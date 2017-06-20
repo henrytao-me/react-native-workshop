@@ -1,22 +1,11 @@
-import * as Components from './components'
-import Resolver from './libs/Resolver'
-import ThemeProvider from './ThemeProvider'
-import Styles from './styles'
-import Themes from './themes'
-import * as utils from './libs/utils'
-
-const DarkTheme = Themes.Dark
-const LightTheme = Themes.Light
-
 export * from './components'
 
+import Theme from './theme'
+import ThemeProvider from './providers/theme'
+import ThemeUtils from './libs/utils'
+
 export {
-  Components,
-  DarkTheme,
-  LightTheme,
-  Resolver,
-  Styles,
+  Theme,
   ThemeProvider,
-  Themes,
-  utils
+  ThemeUtils
 }

@@ -1,3 +1,4 @@
+/* eslint-disable */
 /**
  * Copyright (c) 2015-present, Facebook, Inc.
  * All rights reserved.
@@ -84,8 +85,8 @@ class RNButton extends React.Component {
      */
     testID: React.PropTypes.string,
 
-    buttonStyles: React.PropTypes.object,
-    textStyles: React.PropTypes.object
+    buttonStyle: React.PropTypes.object,
+    textStyle: React.PropTypes.object
   };
 
   render() {
@@ -118,8 +119,8 @@ class RNButton extends React.Component {
     if (disabled) {
       accessibilityTraits.push('disabled');
     }
-    buttonStyles.push(this.props.buttonStyles)
-    textStyles.push(this.props.textStyles)
+    buttonStyles.push(this.props.buttonStyle)
+    textStyles.push(this.props.textStyle)
     return (
       <Touchable
         accessibilityComponentType="button"

@@ -1,41 +1,49 @@
-import * as utils from './utils'
+import * as Utils from './utils'
 
-class BaseResolver {
+export default class Resolver {
 
-  constructor(defaultKey, valuesMap) {
-    this._defaultKey = defaultKey
-    this._valuesMap = valuesMap
-    this._key = null
-    this._cache = {}
-    this._apply()
+  static create(defaultValue, values) {
+    return new Resolver(Object.assign({}, defaultValue), Object.assign({}, values))
+  }
+
+  constructor(defaultValue = {}, values = {}) {
+    this._defaultValue = defaultValue
+    this._values = values
+    // Ex: [{ group: 1, key: 'land', regex: ... }]
+    this._regexMap = Object
+      .keys(values)
+      .map(key => {
+        const keys = key.split('-').sort()
+        const regex = new RegExp(`.*-${keys.join('-.*-')}-.*`)
+        return { group: keys.length, key, regex }
+      })
+      .sort((a, b) => a.group - b.group)
   }
 
   clone() {
-    return create(this._defaultKey, this._valuesMap)
+    return Resolver.create(this._defaultValue, this._valuesMap)
   }
 
-  resolve(key) {
-    this._key = key
-    this._apply()
-    return this
+  extend(defaultValue, values) {
+    return Resolver.create(Utils.merge({}, this._defaultValue, defaultValue), Utils.merge({}, this._values, values))
   }
 
-  _apply() {
-    this._cache = utils.merge({}, this._valuesMap[this._defaultKey], this._valuesMap[this._key] || {})
+  getKeys() {
+    return Object.keys(this._values)
   }
-}
 
-const create = (defaultKey, valuesMap) => {
-  class Resolver extends BaseResolver { }
-  const defaultValues = valuesMap[defaultKey] || {}
-  Object.keys(defaultValues).map(key => {
-    Object.defineProperty(Resolver.prototype, key, {
-      get: function () {
-        return this._cache[key]
+  getOrderedKeys() {
+    return this.getKeys().sort()
+  }
+
+  resolve(keys = []) {
+    keys = Utils.isArray(keys) ? keys : keys.split('-')
+    const requestKey = `-${keys.filter(key => !!key).sort().join('-')}-`
+    return this._regexMap.reduce((acc, { key, regex }) => {
+      if (requestKey && regex.test(requestKey)) {
+        Utils.merge(acc, this._values[key])
       }
-    })
-  })
-  return new Resolver(defaultKey, valuesMap)
+      return acc
+    }, Utils.merge({}, this._defaultValue))
+  }
 }
-
-export default { create }

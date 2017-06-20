@@ -1,12 +1,13 @@
-import React, { Component, PropTypes } from 'react'
+import React from 'react'
 import { View } from 'react-native'
 
+import PropTypes from './PropTypes'
+import PureComponent from './PureComponent'
 import RNButton from './internal/Button'
 
-class Button extends Component {
+export default class Button extends PureComponent {
 
   static contextTypes = {
-    styles: PropTypes.object,
     theme: PropTypes.object
   }
 
@@ -22,37 +23,43 @@ class Button extends Component {
   }
 
   render() {
-    const { styles, theme } = this.context
-    let { type } = this.props
-    let palette = type === 'borderless' ? 'primary' : 'background'
-    let color, textColor = theme.textColor.primary.background
+    const { theme } = this.context
+    const fontFamily = theme.fontFamily.medium
+    let { palette, type } = this.props
+    let backgroundColor, textColor, textColorBorderless
     switch (palette) {
       case 'primary':
-        color = theme.color.primary
+        backgroundColor = theme.palette.primary
         textColor = theme.textColor.primary.primary
-        break;
+        textColorBorderless = theme.palette.primary
+        break
       case 'accent':
-        color = theme.color.accent
+        backgroundColor = theme.palette.accent
         textColor = theme.textColor.primary.accent
-        break;
+        textColorBorderless = theme.palette.accent
+        break
       case 'warn':
-        color = theme.color.warn
+        backgroundColor = theme.palette.warn
         textColor = theme.textColor.primary.warn
-        break;
+        textColorBorderless = theme.palette.warn
+        break
       default:
-        color = theme.color.backgroundDark
+        backgroundColor = theme.palette.background
         textColor = theme.textColor.primary.background
-        break;
+        textColorBorderless = theme.textColor.primary.background
+        break
     }
     return (
-      <View minWidth={theme.layout.buttonMinWidth}>
+      <View minWidth={theme.button.minWidth}>
         <RNButton
-          buttonStyles={{
+          buttonStyle={{
             elevation: type === 'borderless' ? 0 : 2,
-            backgroundColor: type === 'borderless' ? 'transparent' : color
+            backgroundColor: type === 'borderless' ? theme.palette.transparent : backgroundColor
           }}
-          textStyles={{
-            color: type === 'borderless' ? color : textColor
+          textStyle={{
+            color: type === 'borderless' ? textColorBorderless : textColor,
+            fontFamily: fontFamily,
+            fontWeight: 'normal'
           }}
           title={this.props.title}
           onPress={this.props.onPress} />
@@ -60,5 +67,3 @@ class Button extends Component {
     )
   }
 }
-
-export default Button
