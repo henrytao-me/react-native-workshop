@@ -2,6 +2,7 @@ import PropTypes from 'prop-types'
 
 export default Object.assign({}, PropTypes, {
   color: PropTypes.string,
+  iconState: PropTypes.oneOf(['active', 'focused', 'inactive']),
   opacity: PropTypes.number,
   palette: PropTypes.oneOf(['primary', 'primaryDark', 'primaryLight', 'accent', 'accentDark', 'accentLight', 'warn', 'warnDark', 'warnLight', 'background', 'backgroundDark', 'backgroundLight']),
   style: PropTypes.oneOfType([
