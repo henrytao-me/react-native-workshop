@@ -12,7 +12,7 @@ import {
 export default class Example extends PureComponent {
 
   static contextTypes = {
-    theme: PropTypes.object
+    theme: PropTypes.any
   }
 
   render() {

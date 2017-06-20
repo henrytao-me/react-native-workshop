@@ -3,7 +3,7 @@ import * as Utils from '../libs/utils'
 export default class StyleSheet {
 
   static create(creator = (_theme, ..._args) => { }) {
-    return new StyleSheet(creator)
+    return new StyleSheet(Utils.isFunction(creator) ? creator : () => creator)
   }
 
   static _getThemeId(theme) {

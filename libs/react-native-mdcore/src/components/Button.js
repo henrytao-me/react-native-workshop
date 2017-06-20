@@ -8,7 +8,7 @@ import RNButton from './internal/Button'
 export default class Button extends PureComponent {
 
   static contextTypes = {
-    theme: PropTypes.object
+    theme: PropTypes.any
   }
 
   static propTypes = {

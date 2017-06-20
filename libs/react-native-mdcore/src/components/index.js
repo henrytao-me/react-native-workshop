@@ -5,6 +5,7 @@ import {
   AppRegistry, AppState, Animated,
   Easing,
   FlatList,
+  Image,
   InteractionManager,
   ListView,
   Platform,
@@ -17,6 +18,7 @@ export {
   AppRegistry, AppState, Animated,
   Easing,
   FlatList,
+  Image,
   InteractionManager,
   ListView,
   Platform,
@@ -29,6 +31,8 @@ export {
 import { Text } from 'react-native'
 export { Text }
 
+export { default as BottomNavigation } from './BottomNavigation'
+export { default as BottomNavigationItem } from './BottomNavigationItem'
 export { default as Button } from './Button'
 export { default as Card } from './Card'
 export { default as PropTypes } from './PropTypes'
