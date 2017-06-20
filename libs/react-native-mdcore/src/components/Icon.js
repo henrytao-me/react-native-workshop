@@ -28,9 +28,9 @@ export default class Icon extends PureComponent {
 
   static propTypes = {
     color: PropTypes.color,
-    iconSet: PropTypes.string,
     name: PropTypes.string.isRequired,
     palette: PropTypes.palette,
+    set: PropTypes.string,
     size: PropTypes.number,
     state: PropTypes.iconState
   }
@@ -50,10 +50,10 @@ export default class Icon extends PureComponent {
 
   render() {
     const { theme } = this.context
-    const { color, iconSet = Icon.DEFAULT_ICON_SET, name, palette, size, state } = this.props
+    const { color, set = Icon.DEFAULT_ICON_SET, name, palette, size, state } = this.props
     const iconColor = color || theme.iconColor[state][palette]
     const iconSize = size || theme.icon.size
-    const IconView = Icon.ICON_SETS[iconSet]
+    const IconView = Icon.ICON_SETS[set]
     return (
       <IconView
         name={name}

@@ -28,9 +28,6 @@ export {
   WebView
 }
 
-import { Text } from 'react-native'
-export { Text }
-
 export { default as BottomNavigation } from './BottomNavigation'
 export { default as BottomNavigationItem } from './BottomNavigationItem'
 export { default as Button } from './Button'
@@ -41,4 +38,5 @@ export { default as PropTypes } from './PropTypes'
 export { default as PureComponent } from './PureComponent'
 export { default as Ripple } from './Ripple'
 export { default as StyleSheet } from './StyleSheet'
+export { default as Text } from './Text'
 export { default as ViewPager } from './ViewPager'

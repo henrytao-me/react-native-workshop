@@ -2,6 +2,7 @@ import PropTypes from 'prop-types'
 
 export default Object.assign({}, PropTypes, {
   color: PropTypes.string,
+  ellipsizeMode: PropTypes.oneOf(['head', 'middle', 'tail', 'clip']),
   iconState: PropTypes.oneOf(['active', 'focused', 'inactive']),
   opacity: PropTypes.number,
   palette: PropTypes.oneOf(['primary', 'primaryDark', 'primaryLight', 'accent', 'accentDark', 'accentLight', 'warn', 'warnDark', 'warnLight', 'background', 'backgroundDark', 'backgroundLight']),
@@ -9,8 +10,18 @@ export default Object.assign({}, PropTypes, {
     PropTypes.object,
     PropTypes.arrayOf(PropTypes.object)
   ]),
+  text: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.string
+  ]),
+  textSubType: PropTypes.oneOf(['primary', 'secondary', 'hint']),
+  textType: PropTypes.oneOf(['button', 'caption', 'body1', 'body2', 'subhead1', 'subhead2', 'title', 'headline', 'display1', 'display2', 'display3', 'display4']),
+  view: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.func
+  ]),
 
-  ellipsizeMode: PropTypes.oneOf(['head', 'middle', 'tail', 'clip']),
+  
   iconColor: PropTypes.string,
   iconName: PropTypes.string,
   iconSet: PropTypes.string,
@@ -25,15 +36,5 @@ export default Object.assign({}, PropTypes, {
       uri: PropTypes.string
     }),
     PropTypes.number
-  ]),
-  text: PropTypes.oneOfType([
-    PropTypes.element,
-    PropTypes.string
-  ]),
-  textSubType: PropTypes.oneOf(['primary', 'secondary', 'hint']),
-  textType: PropTypes.oneOf(['button', 'caption', 'body1', 'body2', 'subhead1', 'subhead2', 'title', 'headline', 'display1', 'display2', 'display3', 'display4']),
-  view: PropTypes.oneOfType([
-    PropTypes.element,
-    PropTypes.func
   ])
 })
