@@ -1,1 +1,1 @@
-import Main from './src/main'
+require('./src/main')

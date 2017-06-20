@@ -67,6 +67,50 @@ export default {
     activeColor: '#0000008A',
     inactiveColor: '#00000061'
   },
+  iconColor: {
+    active: {
+      primary: '#FFFFFFB3',
+      primaryDark: '#FFFFFFB3',
+      primaryLight: '#0000008A',
+      accent: '#0000008A',
+      accentDark: '#0000008A',
+      accentLight: '#0000008A',
+      warn: '#FFFFFFB3',
+      warnDark: '#FFFFFFB3',
+      warnLight: '#0000008A',
+      background: '#0000008A',
+      backgroundDark: '#0000008A',
+      backgroundLight: '#0000008A'
+    },
+    focused: {
+      primary: '#FFFFFFFF',
+      primaryDark: '#FFFFFFFF',
+      primaryLight: '#000000DE',
+      accent: '#000000DE',
+      accentDark: '#000000DE',
+      accentLight: '#000000DE',
+      warn: '#FFFFFFFF',
+      warnDark: '#FFFFFFFF',
+      warnLight: '#000000DE',
+      background: '#000000DE',
+      backgroundDark: '#000000DE',
+      backgroundLight: '#000000DE'
+    },
+    inactive: {
+      primary: '#FFFFFF80',
+      primaryDark: '#FFFFFF80',
+      primaryLight: '#00000061',
+      accent: '#00000061',
+      accentDark: '#00000061',
+      accentLight: '#00000061',
+      warn: '#FFFFFF80',
+      warnDark: '#FFFFFF80',
+      warnLight: '#00000061',
+      background: '#00000061',
+      backgroundDark: '#00000061',
+      backgroundLight: '#00000061'
+    }
+  },
   iconToggle: {
     size: 48
   },

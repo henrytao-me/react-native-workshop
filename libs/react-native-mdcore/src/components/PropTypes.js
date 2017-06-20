@@ -1,8 +1,13 @@
-import { PropTypes } from 'react'
+import PropTypes from 'prop-types'
 
 export default Object.assign({}, PropTypes, {
   color: PropTypes.string,
   opacity: PropTypes.number,
+  palette: PropTypes.oneOf(['primary', 'primaryDark', 'primaryLight', 'accent', 'accentDark', 'accentLight', 'warn', 'warnDark', 'warnLight', 'background', 'backgroundDark', 'backgroundLight']),
+  style: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.arrayOf(PropTypes.object)
+  ]),
 
   ellipsizeMode: PropTypes.oneOf(['head', 'middle', 'tail', 'clip']),
   iconColor: PropTypes.string,
@@ -19,11 +24,6 @@ export default Object.assign({}, PropTypes, {
       uri: PropTypes.string
     }),
     PropTypes.number
-  ]),
-  palette: PropTypes.oneOf(['primary', 'primaryDark', 'primaryLight', 'accent', 'accentDark', 'accentLight', 'warn', 'warnDark', 'warnLight', 'background', 'backgroundDark', 'backgroundLight']),
-  style: PropTypes.oneOfType([
-    PropTypes.object,
-    PropTypes.arrayOf(PropTypes.object)
   ]),
   text: PropTypes.oneOfType([
     PropTypes.element,

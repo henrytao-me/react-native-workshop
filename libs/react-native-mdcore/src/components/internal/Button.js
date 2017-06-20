@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree. An additional grant
  * of patent rights can be found in the PATENTS file in the same directory.
  *
- * @providesModule RNButton
+ * @providesModule Button
  * @flow
  */
 'use strict';
@@ -15,6 +15,7 @@
 const ColorPropType = require('ColorPropType');
 const Platform = require('Platform');
 const React = require('React');
+const PropTypes = require('prop-types');
 const StyleSheet = require('StyleSheet');
 const Text = require('Text');
 const TouchableNativeFeedback = require('TouchableNativeFeedback');
@@ -32,13 +33,13 @@ const invariant = require('fbjs/lib/invariant');
  * If this button doesn't look right for your app, you can build your own
  * button using [TouchableOpacity](docs/touchableopacity.html)
  * or [TouchableNativeFeedback](docs/touchablenativefeedback.html).
- * For inspiration, look at the [source code for this button component](https://github.com/facebook/react-native/blob/master/Libraries/Components/RNButton.js).
+ * For inspiration, look at the [source code for this button component](https://github.com/facebook/react-native/blob/master/Libraries/Components/Button.js).
  * Or, take a look at the [wide variety of button components built by the community](https://js.coach/react-native?search=button).
  *
  * Example usage:
  *
  * ```
- * <RNButton
+ * <Button
  *   onPress={onPressLearnMore}
  *   title="Learn More"
  *   color="#841584"
@@ -48,7 +49,7 @@ const invariant = require('fbjs/lib/invariant');
  *
  */
 
-class RNButton extends React.Component {
+class Button extends React.Component {
 
   props: {
     title: string,
@@ -63,11 +64,11 @@ class RNButton extends React.Component {
     /**
      * Text to display inside the button
      */
-    title: React.PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
     /**
      * Text to display for blindness accessibility features
      */
-    accessibilityLabel: React.PropTypes.string,
+    accessibilityLabel: PropTypes.string,
     /**
      * Color of the text (iOS), or background color of the button (Android)
      */
@@ -75,15 +76,15 @@ class RNButton extends React.Component {
     /**
      * If true, disable all interactions for this component.
      */
-    disabled: React.PropTypes.bool,
+    disabled: PropTypes.bool,
     /**
      * Handler to be called when the user taps the button
      */
-    onPress: React.PropTypes.func.isRequired,
+    onPress: PropTypes.func.isRequired,
     /**
      * Used to locate this view in end-to-end tests.
      */
-    testID: React.PropTypes.string,
+    testID: PropTypes.string,
 
     buttonStyle: React.PropTypes.object,
     textStyle: React.PropTypes.object
@@ -102,9 +103,9 @@ class RNButton extends React.Component {
     const textStyles = [styles.text];
     const Touchable = Platform.OS === 'android' ? TouchableNativeFeedback : TouchableOpacity;
     if (color && Platform.OS === 'ios') {
-      textStyles.push({ color: color });
+      textStyles.push({color: color});
     } else if (color) {
-      buttonStyles.push({ backgroundColor: color });
+      buttonStyles.push({backgroundColor: color});
     }
     if (disabled) {
       buttonStyles.push(styles.buttonDisabled);
@@ -112,7 +113,7 @@ class RNButton extends React.Component {
     }
     invariant(
       typeof title === 'string',
-      'The title prop of a RNButton must be a string',
+      'The title prop of a Button must be a string',
     );
     const formattedTitle = Platform.OS === 'android' ? title.toUpperCase() : title;
     const accessibilityTraits = ['button'];
@@ -130,7 +131,7 @@ class RNButton extends React.Component {
         disabled={disabled}
         onPress={onPress}>
         <View style={buttonStyles}>
-          <Text style={textStyles}>{formattedTitle}</Text>
+          <Text style={textStyles} disabled={disabled}>{formattedTitle}</Text>
         </View>
       </Touchable>
     );
@@ -141,7 +142,7 @@ class RNButton extends React.Component {
 let defaultBlue = '#2196F3';
 if (Platform.OS === 'ios') {
   // Measured default tintColor from iOS 10
-  defaultBlue = '#0C42FD';
+  defaultBlue = '#007AFF';
 }
 
 const styles = StyleSheet.create({
@@ -184,4 +185,4 @@ const styles = StyleSheet.create({
   }),
 });
 
-module.exports = RNButton;
+module.exports = Button;

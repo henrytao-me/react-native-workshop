@@ -20,6 +20,9 @@ export default class Main extends PureComponent {
           barStyle="light-content" />
         <BottomNavigation>
           <BottomNavigationItem />
+          <BottomNavigationItem />
+          <BottomNavigationItem />
+          <BottomNavigationItem />
         </BottomNavigation>
       </View>
     )

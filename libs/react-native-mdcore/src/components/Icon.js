@@ -27,10 +27,15 @@ export default class Icon extends PureComponent {
   }
 
   static propTypes = {
-    color: PropTypes.iconColor,
-    iconSet: PropTypes.iconSet,
-    name: PropTypes.iconName.isRequired,
+    color: PropTypes.color,
+    iconSet: PropTypes.string,
+    name: PropTypes.string.isRequired,
+    palette: PropTypes.palette,
     size: PropTypes.number
+  }
+
+  static defaultProps = {
+    palette: 'background'
   }
 
   static addIconSet = (iconSet, glyphMap, fontFamily, fontFile) => {
@@ -43,8 +48,8 @@ export default class Icon extends PureComponent {
 
   render() {
     const { theme } = this.context
-    const { color, iconSet = Icon.DEFAULT_ICON_SET, name, size } = this.props
-    const iconColor = color || theme.icon.activeColor
+    const { color, iconSet = Icon.DEFAULT_ICON_SET, name, palette, size } = this.props
+    const iconColor = color || theme.iconColor.active[palette]
     const iconSize = size || theme.icon.size
     const IconView = Icon.ICON_SETS[iconSet]
     return (
