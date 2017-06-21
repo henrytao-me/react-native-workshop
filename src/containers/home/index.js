@@ -13,19 +13,19 @@ import {
 } from 'react-native-mdcore'
 
 const BOTTOM_NAVIGATION_ITEMS = [{
-  icon: 'bookmark',
+  icon: 'search',
   title: 'EXPLORE'
 }, {
-  icon: 'bookmark',
+  icon: 'favorite-border',
   title: 'SAVED'
 }, {
-  icon: 'bookmark',
+  icon: 'adjust',
   title: 'TRIPS'
 }, {
-  icon: 'bookmark',
+  icon: 'inbox',
   title: 'INBOX'
 }, {
-  icon: 'bookmark',
+  icon: 'person-outline',
   title: 'PROFILE'
 }]
 
