@@ -54,7 +54,7 @@ export default class Main extends PureComponent {
 
   _onSetColor = ({ active }) => {
     const { theme } = this.context
-    return active ? theme.palette.primary : undefined
+    return active ? theme.palette.accent : undefined
   }
 
   _onBottomNavigationItemSelected = ({ index }) => {

@@ -24,9 +24,6 @@ export default Object.assign({}, PropTypes, {
   ]),
 
 
-  iconColor: PropTypes.string,
-  iconName: PropTypes.string,
-  iconSet: PropTypes.string,
   imageRadius: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.oneOf(['auto'])

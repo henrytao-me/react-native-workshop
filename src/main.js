@@ -5,13 +5,15 @@ import {
   ThemeProvider
 } from 'react-native-mdcore'
 
-import Home from './containers/home'
+import Home from '@containers/home'
+
+import Theme from '@themes'
 
 class Main extends PureComponent {
 
   render() {
     return (
-      <ThemeProvider>
+      <ThemeProvider theme={Theme}>
         <Home />
       </ThemeProvider>
     )
