@@ -16,6 +16,8 @@ import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
 import PropTypes from './PropTypes'
 import PureComponent from './PureComponent'
 
+import * as Utils from '../libs/utils'
+
 export default class Icon extends PureComponent {
 
   static DEFAULT_ICON_SET = 'MaterialIcons'
@@ -23,21 +25,23 @@ export default class Icon extends PureComponent {
   static ICON_SETS = { Entypo, EvilIcons, FontAwesome, Foundation, Ionicons, MaterialIcons, MaterialCommunityIcons, Octicons, Zocial, SimpleLineIcons }
 
   static contextTypes = {
-    theme: PropTypes.object
+    theme: PropTypes.any
   }
 
   static propTypes = {
+    active: PropTypes.bool,
     color: PropTypes.color,
+    focus: PropTypes.bool,
     name: PropTypes.string.isRequired,
     palette: PropTypes.palette,
     set: PropTypes.string,
-    size: PropTypes.number,
-    state: PropTypes.iconState
+    size: PropTypes.number
   }
 
   static defaultProps = {
-    palette: 'background',
-    state: 'active'
+    active: true,
+    focus: false,
+    palette: 'background'
   }
 
   static addIconSet = (iconSet, glyphMap, fontFamily, fontFile) => {
@@ -50,16 +54,23 @@ export default class Icon extends PureComponent {
 
   render() {
     const { theme } = this.context
-    const { color, set = Icon.DEFAULT_ICON_SET, name, palette, size, state } = this.props
-    const iconColor = color || theme.iconColor[state][palette]
-    const iconSize = size || theme.icon.size
-    const IconView = Icon.ICON_SETS[set]
+    const color = this._getColor()
+    const size = this.props.size || theme.icon.size
+    const IconView = Icon.ICON_SETS[this.props.set || Icon.DEFAULT_ICON_SET]
     return (
-      <IconView
-        name={name}
-        size={iconSize}
-        color={iconColor}
-        style={this.props.style} />
+      <IconView style={this.props.style}
+        color={color}
+        name={this.props.name}
+        size={size} />
     )
+  }
+
+  _getColor = () => {
+    if (Utils.isFunction(this.props.color)) {
+      return this.props.color(this.props)
+    }
+    const { theme } = this.context
+    const state = this.props.focus ? 'focused' : (this.props.active ? 'active' : 'inactive')
+    return this.props.color || theme.iconColor[state][this.props.palette]
   }
 }

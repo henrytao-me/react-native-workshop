@@ -1,9 +1,11 @@
 import PropTypes from 'prop-types'
 
 export default Object.assign({}, PropTypes, {
-  color: PropTypes.string,
+  color: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func
+  ]),
   ellipsizeMode: PropTypes.oneOf(['head', 'middle', 'tail', 'clip']),
-  iconState: PropTypes.oneOf(['active', 'focused', 'inactive']),
   opacity: PropTypes.number,
   palette: PropTypes.oneOf(['primary', 'primaryDark', 'primaryLight', 'accent', 'accentDark', 'accentLight', 'warn', 'warnDark', 'warnLight', 'background', 'backgroundDark', 'backgroundLight']),
   style: PropTypes.oneOfType([
@@ -21,7 +23,7 @@ export default Object.assign({}, PropTypes, {
     PropTypes.func
   ]),
 
-  
+
   iconColor: PropTypes.string,
   iconName: PropTypes.string,
   iconSet: PropTypes.string,

@@ -5,14 +5,18 @@ import PropTypes from './PropTypes'
 import PureComponent from './PureComponent'
 import StyleSheet from './StyleSheet'
 
+import * as Utils from '../libs/utils'
+
 export default class Text extends PureComponent {
 
   static contextTypes = {
-    theme: PropTypes.object
+    theme: PropTypes.any
   }
 
   static propTypes = {
+    color: PropTypes.color,
     ellipsizeMode: PropTypes.ellipsizeMode,
+    enable: PropTypes.bool,
     numberOfLines: PropTypes.number,
     palette: PropTypes.palette,
     subType: PropTypes.textSubType,
@@ -22,17 +26,45 @@ export default class Text extends PureComponent {
 
   static defaultProps = {
     ellipsizeMode: 'tail',
+    enable: true,
     palette: 'background',
     subType: 'primary',
     type: 'body1'
   }
 
   render() {
+    const color = this._getColor()
+    const defaultStyle = this._getDefaultStyle()
+    const ellipsizeMode = this.props.ellipsizeMode
+    const numberOfLines = this._getNumberOfLines()
+    return (
+      <RNText style={[defaultStyle, { color }, this.props.style]}
+        ellipsizeMode={ellipsizeMode}
+        numberOfLines={numberOfLines}>
+        {this.props.children || this.props.value}
+      </RNText>
+    )
+  }
+
+  _getColor = () => {
+    if (Utils.isFunction(this.props.color)) {
+      return this.props.color(this.props)
+    }
+    const { theme } = this.context
+    const subType = this.props.enable ? this.props.subType : 'hint'
+    const color = this.props.color || theme.textColor[subType][this.props.palette]
+    return color
+  }
+
+  _getDefaultStyle = () => {
     const { theme } = this.context
     const styles = Styles.get(theme)
-    const { ellipsizeMode, palette, subType, type } = this.props
+    return styles[this.props.type]
+  }
+
+  _getNumberOfLines = () => {
     let numberOfLines = undefined
-    switch (type) {
+    switch (this.props.type) {
       case 'button':
       case 'caption':
       case 'title':
@@ -46,11 +78,7 @@ export default class Text extends PureComponent {
     }
     numberOfLines = this.props.numberOfLines || numberOfLines
     numberOfLines = numberOfLines === 0 ? undefined : numberOfLines
-    return (
-      <RNText style={[styles[type], { color: theme.textColor[subType][palette] }, this.props.style]} ellipsizeMode={ellipsizeMode} numberOfLines={numberOfLines}>
-        {this.props.children || this.props.value}
-      </RNText>
-    )
+    return numberOfLines
   }
 }
 
