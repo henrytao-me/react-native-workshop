@@ -7,8 +7,8 @@ import {
   View
 } from 'react-native-mdcore'
 
-import { StatusBar, ViewGroup } from '@components'
-import { Explore, Saved } from '@containers'
+import { ViewGroup } from '@components'
+import { Explore, Inbox, Profile, Saved, Trips } from '@containers'
 
 const BOTTOM_NAVIGATION_ITEMS = [{
   icon: 'search',
@@ -36,10 +36,12 @@ export default class Home extends PureComponent {
   render() {
     return (
       <View style={{ flex: 1 }}>
-        <StatusBar />
         <ViewGroup ref="screen">
           <Explore />
           <Saved />
+          <Trips />
+          <Inbox />
+          <Profile />
         </ViewGroup>
         <Divider />
         <BottomNavigation onItemSelected={this._onBottomNavigationItemSelected}>
