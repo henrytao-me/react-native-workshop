@@ -42,6 +42,7 @@ export default class BottomNavigation extends PureComponent {
 
   _onItemPress = (index) => {
     this.setState({ index })
+    this.props.onItemSelected({ index })
   }
 
   _renderItem = (item, index) => {

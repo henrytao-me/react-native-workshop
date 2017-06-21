@@ -1,16 +1,14 @@
 import React from 'react'
 import {
   BottomNavigation, BottomNavigationItem,
-  Button,
   Divider,
-  Image,
   PropTypes,
   PureComponent,
-  StatusBar,
-  StyleSheet,
-  Text,
   View
 } from 'react-native-mdcore'
+
+import { StatusBar, ViewGroup } from '@components'
+import { Explore, Saved } from '@containers'
 
 const BOTTOM_NAVIGATION_ITEMS = [{
   icon: 'search',
@@ -29,7 +27,7 @@ const BOTTOM_NAVIGATION_ITEMS = [{
   title: 'PROFILE'
 }]
 
-export default class Main extends PureComponent {
+export default class Home extends PureComponent {
 
   static contextTypes = {
     theme: PropTypes.any
@@ -38,12 +36,11 @@ export default class Main extends PureComponent {
   render() {
     return (
       <View style={{ flex: 1 }}>
-        <StatusBar
-          backgroundColor="black"
-          barStyle="light-content" />
-        <View style={{ flex: 1 }}>
-
-        </View>
+        <StatusBar />
+        <ViewGroup ref="screen">
+          <Explore />
+          <Saved />
+        </ViewGroup>
         <Divider />
         <BottomNavigation onItemSelected={this._onBottomNavigationItemSelected}>
           {BOTTOM_NAVIGATION_ITEMS.map(this._renderBottomNavigationItem)}
@@ -58,7 +55,7 @@ export default class Main extends PureComponent {
   }
 
   _onBottomNavigationItemSelected = ({ index }) => {
-    // this.setState({ bottomNavigationIndex: index })
+    this.refs.screen.show(index)
   }
 
   _renderBottomNavigationItem = (item, index) => {
