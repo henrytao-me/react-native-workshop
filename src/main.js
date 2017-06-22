@@ -20,4 +20,4 @@ class Main extends PureComponent {
   }
 }
 
-AppRegistry.registerComponent('project', () => Main)
+AppRegistry.registerComponent('main', () => Main)

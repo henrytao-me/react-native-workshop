@@ -1,11 +1,17 @@
 {
-  "name": "project",
+  "name": "react-native-workshop",
   "version": "0.0.1",
   "private": true,
   "scripts": {
+    "assembleDebug": "npm run _resetPacker && npm run _assembleDebug && npm run _patchDebug && npm run _assembleDebug",
+    "assembleRelease": "npm run _resetPacker && cd ./android && ./gradlew assembleRelease && cd ../",
     "eslint": "node ./node_modules/eslint/bin/eslint.js src/** libs/*/src/**",
     "start": "node node_modules/react-native/local-cli/cli.js start --reset-cache",
-    "test": "jest"
+    "stop": "cd ./android && ./gradlew --stop && cd ../",
+    "test": "jest",
+    "_assembleDebug": "cd ./android && ./gradlew assembleDebug && cd ../",
+    "_patchDebug": "react-native bundle --platform android --dev false --entry-file index.android.js --bundle-output android/app/build/intermediates/assets/debug/index.android.bundle --assets-dest android/app/build/intermediates/res/merged/debug/",
+    "_resetPacker": "rm -rf react-native-packager-cache* && rm -rf haste-map-react-native-packager*"
   },
   "dependencies": {
     "react": "16.0.0-alpha.12",
