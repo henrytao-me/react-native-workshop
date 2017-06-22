@@ -1,5 +1,6 @@
 import React from 'react'
 import {
+  Button,
   PropTypes,
   PureComponent,
   TabItem,
@@ -17,8 +18,6 @@ const TABS = [{
   title: 'Homes'
 }, {
   title: 'Experiences'
-}, {
-  title: 'Places'
 }]
 
 export default class Explore extends PureComponent {
@@ -39,8 +38,11 @@ export default class Explore extends PureComponent {
         </Tabs>
         <ViewPager ref="viewPager" style={{ flex: 1 }}
           onSelectedIndexChange={this._onViewPagerItemSelected}>
-          <View>
-            <Text>For you</Text>
+          <View style={{ alignItems: 'center' }}>
+            <View style={{ height: 16 }} />
+            <Button title="experiences" onPress={this._onExperiencesPress} />
+            <View style={{ height: 16 }} />
+            <Button title="homes" onPress={this._onHomesPress} />
           </View>
           <View>
             <Text>Homes</Text>
@@ -48,12 +50,22 @@ export default class Explore extends PureComponent {
           <View>
             <Text>Experiences</Text>
           </View>
-          <View>
-            <Text>Places</Text>
-          </View>
         </ViewPager>
       </View>
     )
+  }
+
+  _goto = (index) => {
+    this.refs.viewPager.setPage(index)
+    this.refs.tabs.setItem(index)
+  }
+
+  _onExperiencesPress = () => {
+    this._goto(2)
+  }
+
+  _onHomesPress = () => {
+    this._goto(1)
   }
 
   _onTabItemSelected = ({ index }) => {
