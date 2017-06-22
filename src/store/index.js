@@ -57,7 +57,7 @@ export const bindActionCreators = reduxBindActionCreators
 export const connect = (mapStateToProps, mapDispatchToProps, mergeProps) => (WrappedComponent) => {
   mapStateToProps = mapStateToProps || function () { return {} }
   const wrappedMapStateToProps = (state, ownProps) => {
-    // apply default state values to re-render PureComponent
+    // apply default state values to re-render PureComponent. Useful for reload the whole app after changing locale
     const { font, language } = state
     return Object.assign({
       __font__: font,

@@ -1,18 +1,18 @@
 import React from 'react'
 import {
-  Button,
   PropTypes,
   PureComponent,
   TabItem,
   Tabs,
-  Text,
   View,
   ViewPager
 } from 'react-native-mdcore'
 
-import * as actions from '@actions'
 import { StatusBar } from '@components'
-import { bindActionCreators, connect } from '@store'
+
+import Experience from './experience'
+import Home from './home'
+import Recommend from './recommend'
 
 const TABS = [{
   title: 'For you'
@@ -22,7 +22,7 @@ const TABS = [{
   title: 'Experiences'
 }]
 
-class Explore extends PureComponent {
+export default class Explore extends PureComponent {
 
   static contextTypes = {
     theme: PropTypes.any
@@ -40,18 +40,9 @@ class Explore extends PureComponent {
         </Tabs>
         <ViewPager ref="viewPager" style={{ flex: 1 }}
           onSelectedIndexChange={this._onViewPagerItemSelected}>
-          <View style={{ alignItems: 'center' }}>
-            <View style={{ height: 16 }} />
-            <Button title="experiences" onPress={this._onExperiencesPress} />
-            <View style={{ height: 16 }} />
-            <Button title="homes" onPress={this._onHomesPress} />
-          </View>
-          <View>
-            <Text>Homes</Text>
-          </View>
-          <View>
-            <Text>Experiences</Text>
-          </View>
+          <Recommend />
+          <Home />
+          <Experience />
         </ViewPager>
       </View>
     )
@@ -86,16 +77,3 @@ class Explore extends PureComponent {
     )
   }
 }
-
-const mapStateToProps = (state) => {
-  return {
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    settingActions: bindActionCreators(actions.settings, dispatch)
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Explore)

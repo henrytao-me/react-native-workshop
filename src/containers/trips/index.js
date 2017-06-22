@@ -9,8 +9,11 @@ export default class Trips extends PureComponent {
 
   render() {
     return (
-      <View>
-        <Text>Trips</Text>
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Text
+          subType="hint"
+          type="display1"
+          value="TRIPS" />
       </View>
     )
   }

@@ -9,8 +9,11 @@ export default class Saved extends PureComponent {
 
   render() {
     return (
-      <View>
-        <Text>Saved</Text>
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Text
+          subType="hint"
+          type="display1"
+          value="SAVED" />
       </View>
     )
   }
