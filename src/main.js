@@ -6,15 +6,18 @@ import {
 } from 'react-native-mdcore'
 
 import { Screen as ScreenNavigator } from '@navigators'
+import Store from '@store'
 import Theme from '@themes'
 
 class Main extends PureComponent {
 
   render() {
     return (
-      <ThemeProvider theme={Theme}>
-        <ScreenNavigator />
-      </ThemeProvider>
+      <Store>
+        <ThemeProvider theme={Theme}>
+          <ScreenNavigator />
+        </ThemeProvider>
+      </Store>
     )
   }
 }

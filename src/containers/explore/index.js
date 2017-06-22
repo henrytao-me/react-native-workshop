@@ -10,7 +10,9 @@ import {
   ViewPager
 } from 'react-native-mdcore'
 
+import * as actions from '@actions'
 import { StatusBar } from '@components'
+import { bindActionCreators, connect } from '@store'
 
 const TABS = [{
   title: 'For you'
@@ -20,7 +22,7 @@ const TABS = [{
   title: 'Experiences'
 }]
 
-export default class Explore extends PureComponent {
+class Explore extends PureComponent {
 
   static contextTypes = {
     theme: PropTypes.any
@@ -65,7 +67,8 @@ export default class Explore extends PureComponent {
   }
 
   _onHomesPress = () => {
-    this._goto(1)
+    // this._goto(1)
+    this.props.settingActions.setCode(new Date().toISOString())
   }
 
   _onTabItemSelected = ({ index }) => {
@@ -83,3 +86,16 @@ export default class Explore extends PureComponent {
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    settingActions: bindActionCreators(actions.settings, dispatch)
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Explore)

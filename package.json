@@ -15,9 +15,15 @@
   },
   "dependencies": {
     "react": "16.0.0-alpha.12",
-    "react-native": "0.45.0",
+    "react-native": "0.45.1",
     "react-native-vector-icons": "4.2.0",
-    "react-navigation": "1.0.0-beta.11"
+    "react-navigation": "1.0.0-beta.11",
+    "react-redux": "5.0.5",
+    "redux": "3.7.0",
+    "redux-devtools-extension": "2.13.2",
+    "redux-logger": "3.0.6",
+    "redux-persist": "4.8.1",
+    "redux-persist-migrate": "4.1.0"
   },
   "devDependencies": {
     "babel-eslint": "7.2.3",

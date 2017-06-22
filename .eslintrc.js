@@ -5,6 +5,9 @@ module.exports = {
     "node": true
   },
   "extends": "eslint:recommended",
+  "globals": {
+    "__DEV__": true
+  },
   "parser": "babel-eslint",
   "parserOptions": {
     "ecmaFeatures": {
