@@ -133,6 +133,10 @@ export const isObject = (item) => {
   return (item && typeof item === 'object' && !isArray(item))
 }
 
+export const isString = (item) => {
+  return (item && typeof item === 'string')
+}
+
 export const merge = (...args) => {
   const target = args[0]
   args.filter((value, key) => key > 0).forEach(value => _mergeAPair(target, value))

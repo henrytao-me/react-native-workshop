@@ -62,7 +62,7 @@ class ViewPager extends React.Component {
       width: 0,
       height: 0,
       selectedIndex: this.props.selectedIndex,
-      initialSelectedIndex: this.props.selectedIndex,
+      initialSelectedIndex: this.props.selectedIndex || 0,
       scrollingTo: null,
     };
     (this: any).handleHorizontalScroll = this.handleHorizontalScroll.bind(this);
@@ -109,7 +109,8 @@ class ViewPager extends React.Component {
         ref="scrollview"
         initialPage={this.state.initialSelectedIndex}
         onPageSelected={this.handleHorizontalScroll}
-        style={styles.container}>
+        style={[styles.container, this.props.style]}
+        onLayout={this.adjustCardSize}>
         {this.renderContent()}
       </ViewPagerAndroid>
     );
@@ -140,11 +141,14 @@ class ViewPager extends React.Component {
   renderContent(): Array<ReactElement> {
     var { width, height } = this.state;
     var style = Platform.OS === 'ios' && styles.card;
-    return ReactNative.Children.map(this.props.children, (child, i) => (
+    if (!this.props.children) {
+      return null
+    }
+    return this.props.children.map((child, i) => (
       <View style={[style, { width, height }]} key={'r_' + i}>
         {child}
       </View>
-    ));
+    ))
   }
 
   handleHorizontalScroll(e: any) {
@@ -164,6 +168,18 @@ class ViewPager extends React.Component {
       this.setState({ selectedIndex, scrollingTo: null });
       const { onSelectedIndexChange } = this.props;
       onSelectedIndexChange && onSelectedIndexChange(selectedIndex);
+    }
+  }
+
+  setPage = (index) => {
+    if (Platform.OS === 'ios') {
+      this.refs.scrollview.scrollTo({
+        x: index * this.state.width,
+        animated: true,
+      });
+      this.setState({ scrollingTo: index });
+    } else {
+      this.refs.scrollview.setPage(index)
     }
   }
 }

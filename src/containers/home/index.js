@@ -12,19 +12,19 @@ import { Explore, Inbox, Profile, Saved, Trips } from '@containers'
 
 const BOTTOM_NAVIGATION_ITEMS = [{
   icon: 'search',
-  title: 'EXPLORE'
+  title: 'Explore'
 }, {
   icon: 'favorite-border',
-  title: 'SAVED'
+  title: 'Saved'
 }, {
   icon: 'adjust',
-  title: 'TRIPS'
+  title: 'Trips'
 }, {
   icon: 'inbox',
-  title: 'INBOX'
+  title: 'Inbox'
 }, {
   icon: 'person-outline',
-  title: 'PROFILE'
+  title: 'Profile'
 }]
 
 export default class Home extends PureComponent {

@@ -5,7 +5,7 @@ import PropTypes from './PropTypes'
 import PureComponent from './PureComponent'
 import StyleSheet from './StyleSheet'
 
-export default class BottomNavigation extends PureComponent {
+export default class Tabs extends PureComponent {
 
   static contextTypes = {
     theme: PropTypes.any
@@ -13,11 +13,14 @@ export default class BottomNavigation extends PureComponent {
 
   static propTypes = {
     backgroundColor: PropTypes.color,
+    indicatorEnabled: PropTypes.bool,
+    indicatorStyle: PropTypes.style,
     initialItem: PropTypes.number,
     onItemSelected: PropTypes.func
   }
 
   static defaultProps = {
+    indicatorEnabled: true,
     initialItem: 0,
     onItemSelected: (_options = { index: 0 }) => { }
   }
@@ -37,9 +40,6 @@ export default class BottomNavigation extends PureComponent {
   }
 
   setItem = (index) => {
-    if (index === this.state.index) {
-      return
-    }
     this.setState({ index })
   }
 
@@ -60,6 +60,7 @@ export default class BottomNavigation extends PureComponent {
     return (
       <TouchableWithoutFeedback key={index} onPress={() => this._onItemPress(index)}>
         <View style={styles.item}>
+          {this.props.indicatorEnabled && active && <View style={[styles.indicator, this.props.indicatorStyle]} />}
           {item}
         </View>
       </TouchableWithoutFeedback>
@@ -69,8 +70,16 @@ export default class BottomNavigation extends PureComponent {
 
 const Styles = StyleSheet.create((theme, { backgroundColor }) => {
   const container = {
-    backgroundColor,
+    backgroundColor: backgroundColor || theme.palette.primary,
     flexDirection: 'row'
+  }
+  const indicator = {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: theme.palette.accent,
+    height: theme.tab.indicatorHeight
   }
   const item = {
     flex: 1,
@@ -78,5 +87,5 @@ const Styles = StyleSheet.create((theme, { backgroundColor }) => {
     alignItems: 'center',
     justifyContent: 'center'
   }
-  return { container, item }
+  return { container, indicator, item }
 })

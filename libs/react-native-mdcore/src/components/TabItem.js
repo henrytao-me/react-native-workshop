@@ -9,7 +9,7 @@ import Text from './Text'
 
 import * as Utils from '../libs/utils'
 
-export default class BottomNavigationItem extends PureComponent {
+export default class TabItem extends PureComponent {
 
   static contextTypes = {
     theme: PropTypes.any
@@ -27,13 +27,13 @@ export default class BottomNavigationItem extends PureComponent {
 
   static defaultProps = {
     active: false,
-    palette: 'background'
+    palette: 'primary'
   }
 
   render() {
     const { theme } = this.context
     const color = this._getColor()
-    const styles = Styles.get(theme)
+    const styles = Styles.get(theme, this.props)
     return (
       <View style={[styles.container, this.props.style]}>
         {this.props.iconName && <Icon
@@ -43,12 +43,12 @@ export default class BottomNavigationItem extends PureComponent {
           name={this.props.iconName}
           palette={this.props.palette}
           set={this.props.iconSet} />}
-        {this.props.title && <Text style={this.props.titleStyle}
+        {this.props.title && <Text style={[styles.title, this.props.titleStyle]}
           color={color}
           enable={this.props.active}
           palette={this.props.palette}
           subType="primary"
-          type="caption">
+          type="body1">
           {this._getTitle()}
         </Text>}
       </View>
@@ -67,12 +67,15 @@ export default class BottomNavigationItem extends PureComponent {
   }
 }
 
-const Styles = StyleSheet.create((theme) => {
+const Styles = StyleSheet.create((theme, { iconName, title }) => {
   const container = {
     alignItems: 'center',
     justifyContent: 'center',
     flex: 1,
-    height: theme.bottomNavigation.height
+    height: iconName && title ? theme.tab.iconWithTextHeight : (iconName ? theme.tab.iconOnlyHeight : theme.tab.textOnlyHeight)
   }
-  return { container }
+  const tabTitle = {
+    marginTop: iconName && title ? theme.tab.spacing : 0
+  }
+  return { container, title: tabTitle }
 })

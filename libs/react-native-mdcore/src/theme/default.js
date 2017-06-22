@@ -5,7 +5,7 @@
 
 export default {
   bottomNavigation: {
-    minHeight: 56
+    height: 56
   },
   button: {
     minWidth: 88
@@ -169,7 +169,11 @@ export default {
     backgroundLight: '#FFFFFF'
   },
   tab: {
-    minHeight: 48
+    iconOnlyHeight: 48,
+    iconWithTextHeight: 72,
+    indicatorHeight: 2,
+    spacing: 8,
+    textOnlyHeight: 48
   },
   textColor: {
     primary: {
