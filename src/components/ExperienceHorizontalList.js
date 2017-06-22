@@ -11,6 +11,7 @@ import {
 
 import ExperienceItem from './ExperienceItem'
 
+let CACHE_ITEM_WIDTH = 0
 const MAX_ITEM_WIDTH = 160
 
 export default class ExperienceHorizontalList extends PureComponent {
@@ -24,7 +25,7 @@ export default class ExperienceHorizontalList extends PureComponent {
   }
 
   state = {
-    itemWidth: 0
+    itemWidth: CACHE_ITEM_WIDTH
   }
 
   render() {
@@ -56,10 +57,6 @@ export default class ExperienceHorizontalList extends PureComponent {
           <View style={{ width: theme.layout.spacing }} />
           <ExperienceItem width={this.state.itemWidth} />
           <View style={{ width: theme.layout.spacing }} />
-          <ExperienceItem width={this.state.itemWidth} />
-          <View style={{ width: theme.layout.spacing }} />
-          <ExperienceItem width={this.state.itemWidth} />
-          <View style={{ width: theme.layout.spacing }} />
         </ScrollView>
       </View>
     )
@@ -69,12 +66,11 @@ export default class ExperienceHorizontalList extends PureComponent {
     const { theme } = this.context
     const spacing = theme.layout.spacing
     const availableWidth = width - spacing * 2
-    let itemWidth = availableWidth / 2
-    if (itemWidth < MAX_ITEM_WIDTH) {
-      itemWidth = availableWidth / parseInt(availableWidth / MAX_ITEM_WIDTH)
+    const itemWidth = parseInt(availableWidth / parseInt(availableWidth / MAX_ITEM_WIDTH)) - spacing
+    if (itemWidth !== CACHE_ITEM_WIDTH) {
+      CACHE_ITEM_WIDTH = itemWidth
+      this.setState({ itemWidth })
     }
-    itemWidth = parseInt(itemWidth) - spacing
-    this.setState({ itemWidth })
   }
 }
 

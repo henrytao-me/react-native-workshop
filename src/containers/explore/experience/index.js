@@ -21,8 +21,6 @@ export default class Experience extends PureComponent {
         <ExperienceHorizontalList style={{ marginTop: theme.layout.spacing }} title="Nature" />
         <ExperienceHorizontalList style={{ marginTop: theme.layout.spacing }} title="Arts & Design" />
         <ExperienceHorizontalList style={{ marginTop: theme.layout.spacing }} title="Food & Drink" />
-        <ExperienceHorizontalList style={{ marginTop: theme.layout.spacing }} title="Music" />
-        <ExperienceHorizontalList style={{ marginTop: theme.layout.spacing }} title="Entertainment" />
         <View style={{ height: theme.layout.spacing * 2 }} />
       </ScrollView>
     )
