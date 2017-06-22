@@ -148,6 +148,8 @@ android {
   }
 }
 
+apply from: "signing.gradle"
+
 dependencies {
   compile fileTree(dir: "libs", include: ["*.jar"])
   compile "com.android.support:appcompat-v7:25.3.1"
