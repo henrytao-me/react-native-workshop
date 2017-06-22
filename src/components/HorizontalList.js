@@ -1,6 +1,5 @@
 import React from 'react'
 import {
-  PixelRatio,
   PropTypes,
   PureComponent,
   ScrollView,
@@ -9,23 +8,25 @@ import {
   View
 } from 'react-native-mdcore'
 
-import ExperienceItem from './ExperienceItem'
+import AttractionItem from './AttractionItem'
 
-let CACHE_ITEM_WIDTH = 0
-const MAX_ITEM_WIDTH = 160
-
-export default class ExperienceHorizontalList extends PureComponent {
+export default class HorizontalList extends PureComponent {
 
   static contextTypes = {
     theme: PropTypes.any
   }
 
   static propTypes = {
+    maxItemWidth: PropTypes.number,
     title: PropTypes.text.isRequired
   }
 
+  static defaultProps = {
+    maxItemWidth: 160
+  }
+
   state = {
-    itemWidth: CACHE_ITEM_WIDTH
+    itemWidth: 0
   }
 
   render() {
@@ -47,15 +48,15 @@ export default class ExperienceHorizontalList extends PureComponent {
           removeClippedSubviews={true}
           showsHorizontalScrollIndicator={false}>
           <View style={{ width: theme.layout.spacing }} />
-          <ExperienceItem width={this.state.itemWidth} />
+          <AttractionItem width={this.state.itemWidth} />
           <View style={{ width: theme.layout.spacing }} />
-          <ExperienceItem width={this.state.itemWidth} />
+          <AttractionItem width={this.state.itemWidth} />
           <View style={{ width: theme.layout.spacing }} />
-          <ExperienceItem width={this.state.itemWidth} />
+          <AttractionItem width={this.state.itemWidth} />
           <View style={{ width: theme.layout.spacing }} />
-          <ExperienceItem width={this.state.itemWidth} />
+          <AttractionItem width={this.state.itemWidth} />
           <View style={{ width: theme.layout.spacing }} />
-          <ExperienceItem width={this.state.itemWidth} />
+          <AttractionItem width={this.state.itemWidth} />
           <View style={{ width: theme.layout.spacing }} />
         </ScrollView>
       </View>
@@ -64,13 +65,12 @@ export default class ExperienceHorizontalList extends PureComponent {
 
   _onLayoutChange = ({ nativeEvent: { layout: { width } } }) => {
     const { theme } = this.context
+    const { maxItemWidth } = this.props
     const spacing = theme.layout.spacing
     const availableWidth = width - spacing * 2
-    const itemWidth = parseInt(availableWidth / parseInt(availableWidth / MAX_ITEM_WIDTH)) - spacing
-    if (itemWidth !== CACHE_ITEM_WIDTH) {
-      CACHE_ITEM_WIDTH = itemWidth
-      this.setState({ itemWidth })
-    }
+    const numberOfItems = availableWidth > maxItemWidth ? parseInt(availableWidth / maxItemWidth) : 1
+    const itemWidth = parseInt(availableWidth / numberOfItems) - spacing
+    this.setState({ itemWidth })
   }
 }
 

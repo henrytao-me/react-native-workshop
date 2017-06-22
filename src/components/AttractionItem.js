@@ -8,7 +8,7 @@ import {
   View
 } from 'react-native-mdcore'
 
-export default class ExperienceItem extends PureComponent {
+export default class AttractionItem extends PureComponent {
 
   static contextTypes = {
     theme: PropTypes.any
@@ -65,18 +65,18 @@ export default class ExperienceItem extends PureComponent {
 
 const Styles = StyleSheet.create((theme, { width }) => {
   const container = {
-    width
+    width,
+    paddingBottom: theme.layout.spacing
   }
   const footer = {
     flexDirection: 'row',
     alignItems: 'center'
   }
   const header = {
-    height: theme.list.singleLineAvatarWithTextHeight,
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: theme.layout.spacingXs,
-    marginBottom: theme.layout.spacingXs
+    marginTop: theme.layout.spacingSm,
+    marginBottom: theme.layout.spacingSm
   }
   return { container, footer, header }
 })

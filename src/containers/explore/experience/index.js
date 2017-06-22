@@ -6,7 +6,7 @@ import {
   View
 } from 'react-native-mdcore'
 
-import { ExperienceHorizontalList } from '@components'
+import { HorizontalList } from '@components'
 
 export default class Experience extends PureComponent {
 
@@ -18,9 +18,9 @@ export default class Experience extends PureComponent {
     const { theme } = this.context
     return (
       <ScrollView>
-        <ExperienceHorizontalList style={{ marginTop: theme.layout.spacing }} title="Nature" />
-        <ExperienceHorizontalList style={{ marginTop: theme.layout.spacing }} title="Arts & Design" />
-        <ExperienceHorizontalList style={{ marginTop: theme.layout.spacing }} title="Food & Drink" />
+        <HorizontalList style={{ marginTop: theme.layout.spacing }} title="Nature" />
+        <HorizontalList style={{ marginTop: theme.layout.spacing }} title="Arts & Design" />
+        <HorizontalList style={{ marginTop: theme.layout.spacing }} title="Food & Drink" />
         <View style={{ height: theme.layout.spacing * 2 }} />
       </ScrollView>
     )

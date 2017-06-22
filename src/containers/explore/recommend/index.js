@@ -1,17 +1,29 @@
 import React from 'react'
 import {
+  PropTypes,
   PureComponent,
-  ScrollView
+  ScrollView,
+  View
 } from 'react-native-mdcore'
 
-import { ExperienceHorizontalList } from '@components'
+import { HorizontalList } from '@components'
 
 export default class Recommend extends PureComponent {
 
+  static contextTypes = {
+    theme: PropTypes.any
+  }
+
   render() {
+    const { theme } = this.context
     return (
       <ScrollView>
-        <ExperienceHorizontalList title="Experiences" />
+        <HorizontalList style={{ marginTop: theme.layout.spacing }}
+          title="Experiences" />
+        <HorizontalList style={{ marginTop: theme.layout.spacing }}
+          maxItemWidth={480}
+          title="Homes" />
+        <View style={{ height: theme.layout.spacing * 2 }} />
       </ScrollView>
     )
   }
