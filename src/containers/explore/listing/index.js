@@ -6,6 +6,7 @@ import {
   View
 } from 'react-native-mdcore'
 
+import * as Actions from '@actions'
 import { ActivityVerticalList } from '@components'
 import * as Selectors from '@selectors'
 import { bindActionCreators, connect } from '@store'
@@ -20,8 +21,13 @@ class Listing extends PureComponent {
     return (
       <ActivityVerticalList
         data={this.props.listingsAsActivity}
-        imageRatio={1.5} />
+        imageRatio={1.5}
+        onItemPress={this._onItemPress} />
     )
+  }
+
+  _onItemPress = ({ data }) => {
+    this.props.navigatorActions.toListingDetail(data.id)
   }
 }
 
@@ -32,4 +38,10 @@ const mapStateToProps = () => {
   })
 }
 
-export default connect(mapStateToProps, null)(Listing)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    navigatorActions: bindActionCreators(Actions.navigator, dispatch)
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Listing)

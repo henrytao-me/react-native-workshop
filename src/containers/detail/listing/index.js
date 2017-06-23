@@ -8,7 +8,7 @@ import {
 } from 'react-native-mdcore'
 
 import * as Actions from '@actions'
-import { connect, bindActionCreators } from '@store'
+import { bindActionCreators, connect } from '@store'
 
 class ListingDetail extends PureComponent {
 

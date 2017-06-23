@@ -18,7 +18,12 @@ export default class ActivityVeriticalList extends PureComponent {
 
   static propTypes = {
     data: PropTypes.arrayOf(PropTypes.instanceOf(Activity)),
-    imageRatio: PropTypes.number
+    imageRatio: PropTypes.number,
+    onItemPress: PropTypes.func
+  }
+
+  static defaultProps = {
+    onItemPress: () => { }
   }
 
   state = {
@@ -45,7 +50,8 @@ export default class ActivityVeriticalList extends PureComponent {
       <ActivityItem key={index} style={{ marginTop: theme.layout.spacing }}
         data={item}
         ratio={this.props.imageRatio}
-        width={this.state.itemWidth} />
+        width={this.state.itemWidth}
+        onPress={this.props.onItemPress} />
     )
   }
 }

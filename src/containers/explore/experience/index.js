@@ -34,8 +34,13 @@ class Experience extends PureComponent {
         data={data}
         imageRatio={0.67}
         title={category}
-        seeAllEnabled={false} />
+        seeAllEnabled={false}
+        onItemPress={this._onItemPress} />
     )
+  }
+
+  _onItemPress = ({ data }) => {
+    this.props.navigatorActions.toExperienceDetail(data.id)
   }
 }
 
@@ -46,4 +51,10 @@ const mapStateToProps = () => {
   })
 }
 
-export default connect(mapStateToProps, null)(Experience)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    navigatorActions: bindActionCreators(Actions.navigator, dispatch)
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Experience)
