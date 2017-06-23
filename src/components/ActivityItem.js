@@ -1,6 +1,7 @@
 import React from 'react'
 import {
   Icon,
+  Image,
   PropTypes,
   PureComponent,
   StyleSheet,
@@ -38,7 +39,10 @@ export default class ActivityItem extends PureComponent {
     return (
       <TouchableWithoutFeedback onPress={this._onPress}>
         <View style={[styles.container, this.props.style]}>
-          <View style={{ height: this.props.width / this.props.ratio, backgroundColor: '#ccc' }}></View>
+          <Image
+            height={this.props.width / this.props.ratio}
+            source={this.props.data.image}
+            width={this.props.width} />
           <View style={styles.header}>
             <Text numberOfLines={2} type="subhead1">
               {this.props.data.highlightTitle && <Text style={styles.headerHighLightTitle} type="subhead1">{this.props.data.highlightTitle}</Text>}

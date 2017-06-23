@@ -15,6 +15,7 @@ export default class Listing extends Base {
     return new Activity({
       id: this.id,
       highlightTitle: `$${this.price}`,
+      image: this.image,
       title: this.title
     })
   }

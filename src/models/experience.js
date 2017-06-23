@@ -16,6 +16,7 @@ export default class Experience extends Base {
     return new Activity({
       id: this.id,
       highlightTitle: `$${this.price}`,
+      image: this.image,
       title: this.title
     })
   }
