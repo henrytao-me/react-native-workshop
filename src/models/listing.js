@@ -12,6 +12,7 @@ export default class Listing extends Base {
 
   toActivity() {
     return new Activity({
+      id: this.id,
       highlightTitle: `$${this.price}`,
       title: this.title
     })

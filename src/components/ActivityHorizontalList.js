@@ -25,12 +25,14 @@ export default class ActivityHorizontalList extends PureComponent {
     maxItemWidth: PropTypes.number,
     seeAllEnabled: PropTypes.bool,
     title: PropTypes.text.isRequired,
+    onItemPress: PropTypes.func,
     onSeeAllPress: PropTypes.func
   }
 
   static defaultProps = {
     maxItemWidth: 160,
     seeAllEnabled: true,
+    onItemPress: () => { },
     onSeeAllPress: () => { }
   }
 
@@ -85,7 +87,7 @@ export default class ActivityHorizontalList extends PureComponent {
   }
 
   _onSeeAllPress = () => {
-    this.props.onSeeAllPress({ tag: this.props.tag })
+    this.props.onSeeAllPress(this.props)
   }
 
   _renderItem = (item, index) => {
@@ -95,7 +97,8 @@ export default class ActivityHorizontalList extends PureComponent {
         <ActivityItem
           data={item}
           ratio={this.props.imageRatio}
-          width={this.state.itemWidth} />
+          width={this.state.itemWidth}
+          onPress={this.props.onItemPress} />
         <View style={{ width: theme.layout.spacing }} />
       </View>
     )

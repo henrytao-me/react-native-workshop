@@ -6,6 +6,7 @@ import {
 import { StackNavigator } from 'react-navigation'
 
 import * as Containers from '@containers'
+import { Injector } from '@middlewares'
 
 const ROUTERS = {
   experienceDetail: {
@@ -35,6 +36,10 @@ export default class Screen extends PureComponent {
 
   static contextTypes = {
     theme: PropTypes.object
+  }
+
+  componentDidMount() {
+    Injector.inject({ navigator: this.refs.navigator })
   }
 
   render() {

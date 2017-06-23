@@ -1,18 +1,23 @@
 import { Experience } from '@models'
 
+const SAMPLES = [
+  new Experience({ id: 1, category: 'Nature', title: 'Experience 1' }),
+  new Experience({ id: 2, category: 'Nature', title: 'Experience 2' }),
+  new Experience({ id: 3, category: 'Nature', title: 'Experience 3' }),
+  new Experience({ id: 4, category: 'Nature', title: 'Experience 4' }),
+  new Experience({ id: 5, category: 'Nature', title: 'Experience 5' }),
+  new Experience({ id: 6, category: 'Arts & Design', title: 'Experience 6' }),
+  new Experience({ id: 7, category: 'Arts & Design', title: 'Experience 7' }),
+  new Experience({ id: 8, category: 'Arts & Design', title: 'Experience 8' }),
+  new Experience({ id: 9, category: 'Arts & Design', title: 'Experience 9' })
+]
+
 const INITIAL_STATE = {
-  all: {
-    1: new Experience({ category: 'Nature', title: 'Experience 1' }),
-    2: new Experience({ category: 'Nature', title: 'Experience 2' }),
-    3: new Experience({ category: 'Nature', title: 'Experience 3' }),
-    4: new Experience({ category: 'Nature', title: 'Experience 4' }),
-    5: new Experience({ category: 'Nature', title: 'Experience 5' }),
-    6: new Experience({ category: 'Arts & Design', title: 'Experience 6' }),
-    7: new Experience({ category: 'Arts & Design', title: 'Experience 7' }),
-    8: new Experience({ category: 'Arts & Design', title: 'Experience 8' }),
-    9: new Experience({ category: 'Arts & Design', title: 'Experience 9' })
-  },
-  ids: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+  all: SAMPLES.reduce((acc, data) => {
+    acc[data.id] = data
+    return acc
+  }, {}),
+  ids: SAMPLES.map(data => data.id)
 }
 
 export default (state = INITIAL_STATE, action) => {

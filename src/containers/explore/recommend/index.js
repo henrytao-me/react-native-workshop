@@ -33,16 +33,26 @@ class Recommend extends PureComponent {
           data={this.props.experiencesAsActivity}
           imageRatio={0.67}
           title="Experiences"
+          onItemPress={this._onExperienceItemPress}
           onSeeAllPress={this.props.onSeeAllPress} />
         <ActivityHorizontalList tag="homes" style={{ marginTop: theme.layout.spacing }}
           data={this.props.listingsAsActivity}
           imageRatio={1.5}
           maxItemWidth={240}
           title="Listings"
+          onItemPress={this._onListingItemPress}
           onSeeAllPress={this.props.onSeeAllPress} />
         <View style={{ height: theme.layout.spacing * 2 }} />
       </ScrollView>
     )
+  }
+
+  _onExperienceItemPress = ({ data }) => {
+    this.props.navigatorActions.toExperienceDetail(data.id)
+  }
+
+  _onListingItemPress = ({ data }) => {
+    this.props.navigatorActions.toListingDetail(data.id)
   }
 }
 
@@ -57,7 +67,7 @@ const mapStateToProps = () => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    settingsActions: bindActionCreators(Actions.settings, dispatch)
+    navigatorActions: bindActionCreators(Actions.navigator, dispatch)
   }
 }
 

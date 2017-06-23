@@ -5,6 +5,7 @@ import {
   PureComponent,
   StyleSheet,
   Text,
+  TouchableWithoutFeedback,
   View
 } from 'react-native-mdcore'
 
@@ -20,10 +21,12 @@ export default class ActivityItem extends PureComponent {
     data: PropTypes.instanceOf(Activity),
     ratio: PropTypes.number,
     width: PropTypes.number,
+    onPress: PropTypes.func
   }
 
   static defaultProps = {
-    ratio: 1
+    ratio: 1,
+    onPress: () => { }
   }
 
   render() {
@@ -33,37 +36,43 @@ export default class ActivityItem extends PureComponent {
     const { theme } = this.context
     const styles = Styles.get(theme, this.props)
     return (
-      <View style={[styles.container, this.props.style]}>
-        <View style={{ height: this.props.width / this.props.ratio, backgroundColor: '#ccc' }}></View>
-        <View style={styles.header}>
-          <Text numberOfLines={2} type="subhead1">
-            {this.props.data.highlightTitle && <Text style={styles.headerHighLightTitle} type="subhead1">{this.props.data.highlightTitle}</Text>}
-            {this.props.data.highlightTitle && <Text type="subhead1" value="  " />}
-            {this.props.data.title && <Text type="subhead1">{this.props.data.title}</Text>}
-          </Text>
+      <TouchableWithoutFeedback onPress={this._onPress}>
+        <View style={[styles.container, this.props.style]}>
+          <View style={{ height: this.props.width / this.props.ratio, backgroundColor: '#ccc' }}></View>
+          <View style={styles.header}>
+            <Text numberOfLines={2} type="subhead1">
+              {this.props.data.highlightTitle && <Text style={styles.headerHighLightTitle} type="subhead1">{this.props.data.highlightTitle}</Text>}
+              {this.props.data.highlightTitle && <Text type="subhead1" value="  " />}
+              {this.props.data.title && <Text type="subhead1">{this.props.data.title}</Text>}
+            </Text>
+          </View>
+          <View style={styles.footer}>
+            <Icon
+              name="star"
+              size={theme.icon.sizeSm} />
+            <Icon
+              name="star"
+              size={theme.icon.sizeSm} />
+            <Icon
+              name="star"
+              size={theme.icon.sizeSm} />
+            <Icon
+              name="star"
+              size={theme.icon.sizeSm} />
+            <Icon
+              name="star"
+              size={theme.icon.sizeSm} />
+            <Text style={{ flex: 1, marginLeft: theme.layout.spacingXs }}
+              type="caption"
+              value="99 Reviews" />
+          </View>
         </View>
-        <View style={styles.footer}>
-          <Icon
-            name="star"
-            size={theme.icon.sizeSm} />
-          <Icon
-            name="star"
-            size={theme.icon.sizeSm} />
-          <Icon
-            name="star"
-            size={theme.icon.sizeSm} />
-          <Icon
-            name="star"
-            size={theme.icon.sizeSm} />
-          <Icon
-            name="star"
-            size={theme.icon.sizeSm} />
-          <Text style={{ flex: 1, marginLeft: theme.layout.spacingXs }}
-            type="caption"
-            value="99 Reviews" />
-        </View>
-      </View>
+      </TouchableWithoutFeedback>
     )
+  }
+
+  _onPress = () => {
+    this.props.onPress(this.props)
   }
 }
 

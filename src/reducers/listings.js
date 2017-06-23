@@ -1,18 +1,23 @@
 import { Listing } from '@models'
 
+const SAMPLES = [
+  new Listing({ id: 1, title: 'Listing 1' }),
+  new Listing({ id: 2, title: 'Listing 2' }),
+  new Listing({ id: 3, title: 'Listing 3' }),
+  new Listing({ id: 4, title: 'Listing 4' }),
+  new Listing({ id: 5, title: 'Listing 5' }),
+  new Listing({ id: 6, title: 'Listing 6' }),
+  new Listing({ id: 7, title: 'Listing 7' }),
+  new Listing({ id: 8, title: 'Listing 8' }),
+  new Listing({ id: 9, title: 'Listing 9' })
+]
+
 const INITIAL_STATE = {
-  all: {
-    1: new Listing({ title: 'Listing 1' }),
-    2: new Listing({ title: 'Listing 2' }),
-    3: new Listing({ title: 'Listing 3' }),
-    4: new Listing({ title: 'Listing 4' }),
-    5: new Listing({ title: 'Listing 5' }),
-    6: new Listing({ title: 'Listing 6' }),
-    7: new Listing({ title: 'Listing 7' }),
-    8: new Listing({ title: 'Listing 8' }),
-    9: new Listing({ title: 'Listing 9' })
-  },
-  ids: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+  all: SAMPLES.reduce((acc, data) => {
+    acc[data.id] = data
+    return acc
+  }, {}),
+  ids: SAMPLES.map(data => data.id)
 }
 
 export default (state = INITIAL_STATE, action) => {
