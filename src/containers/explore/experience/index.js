@@ -26,3 +26,10 @@ export default class Experience extends PureComponent {
     )
   }
 }
+
+// import * as Models from '@models'
+// import { Model } from 'redux-persist-model'
+// const experience = new Models.Experience({
+//   category: 'hello moto'
+// })
+// console.log('aaaaaaa', experience.toString(), experience.toJSON(), Model.isModel(experience))
