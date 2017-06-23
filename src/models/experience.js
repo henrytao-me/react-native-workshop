@@ -1,5 +1,7 @@
 import { Model } from 'redux-persist-model'
 
+import Attraction from './attraction'
+
 const Base = Model.create('Experience', {
   category: '',
   communication: '',
@@ -12,10 +14,15 @@ const Base = Model.create('Experience', {
   price: 0,
   shortDesc: '',
   shortNote: '',
-  title: '',
-  type: ''
+  title: ''
 })
 
 export default class Experience extends Base {
 
+  toAttraction() {
+    return new Attraction({
+      highlightTitle: `$${this.price}`,
+      title: this.title
+    })
+  }
 }

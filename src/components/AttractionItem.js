@@ -8,6 +8,8 @@ import {
   View
 } from 'react-native-mdcore'
 
+import { Attraction } from '@models'
+
 export default class AttractionItem extends PureComponent {
 
   static contextTypes = {
@@ -15,27 +17,29 @@ export default class AttractionItem extends PureComponent {
   }
 
   static propTypes = {
+    data: PropTypes.instanceOf(Attraction),
+    ratio: PropTypes.number,
     width: PropTypes.number,
   }
 
+  static defaultProps = {
+    ratio: 1
+  }
+
   render() {
-    if (this.props.width === 0) {
+    if (this.props.width === 0 || !this.props.data) {
       return null
     }
     const { theme } = this.context
     const styles = Styles.get(theme, this.props)
     return (
       <View style={[styles.container, this.props.style]}>
-        <View style={{ height: 240, backgroundColor: '#ccc' }}></View>
+        <View style={{ height: this.props.width / this.props.ratio, backgroundColor: '#ccc' }}></View>
         <View style={styles.header}>
           <Text numberOfLines={2}>
-            <Text style={{ fontWeight: 'bold' }}
-              type="subhead1"
-              value="$120" />
-            <Text value="  " />
-            <Text
-              type="subhead1"
-              value="Catch fresh crab out of the Pacific" />
+            {this.props.data.highlightTitle && <Text style={styles.headerHighLightTitle} type="subhead1">{this.props.data.highlightTitle}</Text>}
+            {this.props.data.highlightTitle && <Text value="  " />}
+            {this.props.data.title && <Text type="subhead1">{this.props.data.title}</Text>}
           </Text>
         </View>
         <View style={styles.footer}>
@@ -56,7 +60,7 @@ export default class AttractionItem extends PureComponent {
             size={theme.icon.sizeSm} />
           <Text style={{ flex: 1, marginLeft: theme.layout.spacingXs }}
             type="caption"
-            value="47 Reviews" />
+            value="99 Reviews" />
         </View>
       </View>
     )
@@ -78,5 +82,8 @@ const Styles = StyleSheet.create((theme, { width }) => {
     marginTop: theme.layout.spacingSm,
     marginBottom: theme.layout.spacingSm
   }
-  return { container, footer, header }
+  const headerHighLightTitle = {
+    fontWeight: 'bold'
+  }
+  return { container, footer, header, headerHighLightTitle }
 })

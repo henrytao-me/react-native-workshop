@@ -6,7 +6,7 @@ import {
   View
 } from 'react-native-mdcore'
 
-import { HorizontalList } from '@components'
+import { AttractionHorizontalList } from '@components'
 
 export default class Experience extends PureComponent {
 
@@ -18,18 +18,17 @@ export default class Experience extends PureComponent {
     const { theme } = this.context
     return (
       <ScrollView>
-        <HorizontalList style={{ marginTop: theme.layout.spacing }} title="Nature" />
-        <HorizontalList style={{ marginTop: theme.layout.spacing }} title="Arts & Design" />
-        <HorizontalList style={{ marginTop: theme.layout.spacing }} title="Food & Drink" />
+        <AttractionHorizontalList style={{ marginTop: theme.layout.spacing }}
+          title="Nature"
+          seeAllEnabled={false} />
+        <AttractionHorizontalList style={{ marginTop: theme.layout.spacing }}
+          title="Arts & Design"
+          seeAllEnabled={false} />
+        <AttractionHorizontalList style={{ marginTop: theme.layout.spacing }}
+          title="Food & Drink"
+          seeAllEnabled={false} />
         <View style={{ height: theme.layout.spacing * 2 }} />
       </ScrollView>
     )
   }
 }
-
-// import * as Models from '@models'
-// import { Model } from 'redux-persist-model'
-// const experience = new Models.Experience({
-//   category: 'hello moto'
-// })
-// console.log('aaaaaaa', experience.toString(), experience.toJSON(), Model.isModel(experience))

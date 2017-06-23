@@ -4,7 +4,6 @@ import { PureComponent } from 'react-native-mdcore'
 
 import { connect as reactReduxConnect, Provider } from 'react-redux'
 import { applyMiddleware, bindActionCreators as reduxBindActionCreators, createStore } from 'redux'
-
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { createLogger } from 'redux-logger'
 import { persistStore, autoRehydrate } from 'redux-persist'
@@ -53,19 +52,4 @@ export default class Store extends PureComponent {
 }
 
 export const bindActionCreators = reduxBindActionCreators
-
-/**
- * Connect with default state values
- */
-export const connect = (mapStateToProps, mapDispatchToProps, mergeProps) => (WrappedComponent) => {
-  mapStateToProps = mapStateToProps || function () { return {} }
-  const wrappedMapStateToProps = (state, ownProps) => {
-    // apply default state values to re-render PureComponent. Useful for reload the whole app after changing locale
-    const { font, language } = state
-    return Object.assign({
-      __font__: font,
-      __language__: language
-    }, mapStateToProps(state, ownProps))
-  }
-  return reactReduxConnect(wrappedMapStateToProps, mapDispatchToProps, mergeProps)(WrappedComponent)
-}
+export const connect = reactReduxConnect

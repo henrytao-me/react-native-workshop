@@ -24,7 +24,8 @@
     "redux-devtools-extension": "2.13.2",
     "redux-logger": "3.0.6",
     "redux-persist": "4.8.1",
-    "redux-persist-migrate": "4.1.0"
+    "redux-persist-migrate": "4.1.0",
+    "reselect": "3.0.1"
   },
   "devDependencies": {
     "babel-eslint": "7.2.3",

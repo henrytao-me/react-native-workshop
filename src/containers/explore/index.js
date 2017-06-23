@@ -40,7 +40,7 @@ export default class Explore extends PureComponent {
         </Tabs>
         <ViewPager ref="viewPager" style={{ flex: 1 }}
           onSelectedIndexChange={this._onViewPagerItemSelected}>
-          <Recommend />
+          <Recommend onSeeAllPress={this._onSeeAllPress} />
           <Home />
           <Experience />
         </ViewPager>
@@ -53,17 +53,19 @@ export default class Explore extends PureComponent {
     this.refs.tabs.setItem(index)
   }
 
-  _onExperiencesPress = () => {
-    this._goto(2)
-  }
-
-  _onHomesPress = () => {
-    // this._goto(1)
-    this.props.settingActions.setCode(new Date().toISOString())
-  }
-
   _onTabItemSelected = ({ index }) => {
     this.refs.viewPager.setPage(index)
+  }
+
+  _onSeeAllPress = ({ tag }) => {
+    switch (tag) {
+      case 'experiences':
+        this._goto(2)
+        break
+      case 'homes':
+        this._goto(1)
+        break
+    }
   }
 
   _onViewPagerItemSelected = (index) => {

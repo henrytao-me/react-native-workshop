@@ -7,8 +7,9 @@ import {
 } from 'react-native-mdcore'
 
 import { AttractionItem } from '@components'
+import { bindActionCreators, connect } from '@store'
 
-export default class Home extends PureComponent {
+class Home extends PureComponent {
 
   static contextTypes = {
     theme: PropTypes.any
@@ -27,3 +28,9 @@ export default class Home extends PureComponent {
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {}
+}
+
+export default connect(mapStateToProps, null)(Home)

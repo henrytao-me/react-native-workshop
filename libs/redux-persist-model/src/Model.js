@@ -25,6 +25,11 @@ const create = (NAME = null, FIELDS) => {
 
     static FIELDS = FIELDS
 
+    clone() {
+      const zClass = this.constructor
+      return new zClass(this.toJS())
+    }
+
     get(key, defaultValue = FIELDS[key]) {
       let value = super.get(key)
       value = value === undefined || value === null ? defaultValue : value
