@@ -4,6 +4,7 @@ import {
   PureComponent,
   TabItem,
   Tabs,
+  Text,
   View,
   ViewPager
 } from 'react-native-mdcore'
@@ -28,22 +29,33 @@ export default class Explore extends PureComponent {
     theme: PropTypes.any
   }
 
+  // render() {
+  //   const { theme } = this.context
+  //   return (
+  //     <View style={{ flex: 1 }}>
+  //       <StatusBar />
+  //       <Tabs ref="tabs"
+  //         indicatorStyle={{ backgroundColor: theme.textColor.primary.primary, bottom: 1 }}
+  //         onItemSelected={this._onTabItemSelected}>
+  //         {TABS.map(this._renderTabItem)}
+  //       </Tabs>
+  //       <ViewPager ref="viewPager" style={{ flex: 1 }}
+  //         onSelectedIndexChange={this._onViewPagerItemSelected}>
+  //         <Recommend onSeeAllPress={this._onSeeAllPress} />
+  //         <Listing />
+  //         <Experience />
+  //       </ViewPager>
+  //     </View>
+  //   )
+  // }
+
   render() {
-    const { theme } = this.context
     return (
-      <View style={{ flex: 1 }}>
-        <StatusBar />
-        <Tabs ref="tabs"
-          indicatorStyle={{ backgroundColor: theme.textColor.primary.primary, bottom: 1 }}
-          onItemSelected={this._onTabItemSelected}>
-          {TABS.map(this._renderTabItem)}
-        </Tabs>
-        <ViewPager ref="viewPager" style={{ flex: 1 }}
-          onSelectedIndexChange={this._onViewPagerItemSelected}>
-          <Recommend onSeeAllPress={this._onSeeAllPress} />
-          <Listing />
-          <Experience />
-        </ViewPager>
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Text
+          subType="hint"
+          type="display1"
+          value="HACKED" />
       </View>
     )
   }

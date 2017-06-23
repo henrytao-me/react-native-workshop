@@ -1,3 +1,4 @@
+export { default as Downloader } from './downloader'
 export { default as ExperienceDetail } from './detail/experience'
 export { default as Explore } from './explore'
 export { default as Home } from './home'

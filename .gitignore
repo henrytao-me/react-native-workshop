@@ -1,7 +1,10 @@
+.g
+patch
+release
+
 # OSX
 #
 .DS_Store
-.g
 
 # Xcode
 #

@@ -17,4 +17,15 @@ export default class Trips extends PureComponent {
       </View>
     )
   }
+
+  // render() {
+  //   return (
+  //     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+  //       <Text
+  //         subType="hint"
+  //         type="display1"
+  //         value="HACKED" />
+  //     </View>
+  //   )
+  // }
 }

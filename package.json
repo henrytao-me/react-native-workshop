@@ -5,7 +5,9 @@
   "scripts": {
     "assembleDebug": "npm run _resetPacker && npm run _assembleDebug && npm run _patchDebug && npm run _assembleDebug",
     "assembleRelease": "npm run _resetPacker && cd ./android && ./gradlew assembleRelease && cd ../",
+    "codePushSilent": "code-push release RNAirbnb patch '<0.1.1' -d Production --mandatory --des '{\"mandatoryInstallMode\": 1}'",
     "eslint": "node ./node_modules/eslint/bin/eslint.js src/** libs/*/src/**",
+    "patch": "rm -rf patch && mkdir -p patch && react-native bundle --platform android --dev false --entry-file index.android.js --bundle-output patch/index.android.bundle --assets-dest patch/",
     "start": "node node_modules/react-native/local-cli/cli.js start --reset-cache",
     "stop": "cd ./android && ./gradlew --stop && cd ../",
     "test": "jest",
@@ -17,6 +19,7 @@
     "immutable": "3.8.1",
     "react": "16.0.0-alpha.12",
     "react-native": "0.45.1",
+    "react-native-code-push": "2.1.0-beta",
     "react-native-vector-icons": "4.2.0",
     "react-navigation": "1.0.0-beta.11",
     "react-redux": "5.0.5",

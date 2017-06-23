@@ -17,4 +17,5 @@
 <resources>
 
   <string name="app_name">RNAirbnb</string>
+  <string name="reactNativeCodePush_androidDeploymentKey" moduleConfig="true">7sD-01j0oMP9f_9I4JfOszN1CqYe6619df66-73b7-426b-96e9-0474ec5306c8</string>
 </resources>
