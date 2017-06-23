@@ -4,6 +4,7 @@ import Activity from './activity'
 
 const Base = Model.create('Listing', {
   id: undefined,
+  image: undefined,
   price: 0,
   title: ''
 })

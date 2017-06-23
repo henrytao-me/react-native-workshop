@@ -2,13 +2,16 @@ import React from 'react'
 import {
   BottomNavigation, BottomNavigationItem,
   Divider,
+  InteractionManager,
   PropTypes,
   PureComponent,
   View
 } from 'react-native-mdcore'
 
+import * as Actions from '@actions'
 import { ViewGroup } from '@components'
 import { Explore, Inbox, Profile, Saved, Trips } from '@containers'
+import { bindActionCreators, connect } from '@store'
 
 const BOTTOM_NAVIGATION_ITEMS = [{
   icon: 'search',
@@ -27,10 +30,18 @@ const BOTTOM_NAVIGATION_ITEMS = [{
   title: 'Profile'
 }]
 
-export default class Home extends PureComponent {
+class Home extends PureComponent {
 
   static contextTypes = {
     theme: PropTypes.any
+  }
+
+  componentDidMount() {
+    const { syncActions } = this.props
+    InteractionManager.runAfterInteractions(() => Promise.all([
+      syncActions.syncExperiences(),
+      syncActions.syncListings()
+    ]))
   }
 
   render() {
@@ -70,3 +81,10 @@ export default class Home extends PureComponent {
   }
 }
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    syncActions: bindActionCreators(Actions.sync, dispatch)
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Home)

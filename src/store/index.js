@@ -12,10 +12,14 @@ import { applyModelTransform, PersistModelProvider } from 'redux-persist-model'
 
 import middlewares, { Injector } from '@middlewares'
 import * as Models from '@models'
+import * as Modules from '@modules'
 import reducers from '@reducers'
 
 import migration from './migration'
 
+export { default as CONST } from './const'
+
+Injector.inject(Modules)
 const STORE = createStore(reducers, undefined, composeWithDevTools(
   createMigration(migration, 'settings'),
   applyMiddleware(

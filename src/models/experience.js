@@ -5,16 +5,8 @@ import Activity from './activity'
 const Base = Model.create('Experience', {
   id: undefined,
   category: '',
-  communication: '',
-  equipment: '',
-  host: '',
-  hour: 0,
-  location: '',
-  longDesc: '',
-  longNote: '',
+  image: undefined,
   price: 0,
-  shortDesc: '',
-  shortNote: '',
   title: ''
 })
 

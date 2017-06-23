@@ -33,9 +33,11 @@ export default class ActivityVeriticalList extends PureComponent {
   render() {
     const { theme } = this.context
     return (
-      <ScrollView style={{ paddingLeft: theme.layout.spacing, paddingRight: theme.layout.spacing }} onLayout={this._onLayoutChange}>
-        {this.props.data && this.props.data.map(this._renderItem)}
-        <View style={{ height: theme.layout.spacing * 2 }} />
+      <ScrollView style={[{ flex: 1, paddingLeft: theme.layout.spacing, paddingRight: theme.layout.spacing }, this.props.style]}>
+        <View onLayout={this._onLayoutChange}>
+          {this.props.data && this.props.data.map(this._renderItem)}
+          <View style={{ height: theme.layout.spacing * 2 }} />
+        </View>
       </ScrollView>
     )
   }
