@@ -9,15 +9,15 @@ import * as Containers from '@containers'
 
 const ROUTERS = {
   experienceDetail: {
-    path: 'detail/experience/:id',
+    path: 'detail/experiences/:id',
     screen: Containers.ExperienceDetail
   },
   home: {
     screen: Containers.Home
   },
-  homeDetail: {
-    path: 'detail/home/:id',
-    screen: Containers.HomeDetail
+  listingDetail: {
+    path: 'detail/listings/:id',
+    screen: Containers.ListingDetail
   }
 }
 

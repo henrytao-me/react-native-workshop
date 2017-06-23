@@ -6,7 +6,8 @@ import {
   View
 } from 'react-native-mdcore'
 
-import { ActivityItem } from '@components'
+import { ActivityVerticalList } from '@components'
+import * as Selectors from '@selectors'
 import { bindActionCreators, connect } from '@store'
 
 class Listing extends PureComponent {
@@ -16,21 +17,19 @@ class Listing extends PureComponent {
   }
 
   render() {
-    const { theme } = this.context
     return (
-      <ScrollView style={{ paddingLeft: theme.layout.spacing, paddingRight: theme.layout.spacing }}>
-        <ActivityItem style={{ marginTop: theme.layout.spacing }} />
-        <ActivityItem style={{ marginTop: theme.layout.spacing }} />
-        <ActivityItem style={{ marginTop: theme.layout.spacing }} />
-        <ActivityItem style={{ marginTop: theme.layout.spacing }} />
-        <View style={{ height: theme.layout.spacing * 2 }} />
-      </ScrollView>
+      <ActivityVerticalList
+        data={this.props.listingsAsActivity}
+        imageRatio={1.5} />
     )
   }
 }
 
-const mapStateToProps = (state) => {
-  return {}
+const mapStateToProps = () => {
+  const getListingsAsActivity = Selectors.listing.filterAndConvertToActivity(0)
+  return (state, props) => ({
+    listingsAsActivity: getListingsAsActivity(state, props)
+  })
 }
 
 export default connect(mapStateToProps, null)(Listing)

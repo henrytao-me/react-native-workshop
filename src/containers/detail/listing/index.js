@@ -5,12 +5,12 @@ import {
   View
 } from 'react-native-mdcore'
 
-export default class HomeDetail extends PureComponent {
+export default class ListingDetail extends PureComponent {
 
   render() {
     return (
       <View>
-        <Text>Home Detail</Text>
+        <Text>Listing Detail</Text>
       </View>
     )
   }
