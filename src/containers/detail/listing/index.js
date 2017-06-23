@@ -19,7 +19,7 @@ class ListingDetail extends PureComponent {
   render() {
     const { theme } = this.context
     return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', padding: theme.layout.spacing }}>
         <Text style={{ textAlign: 'center', marginBottom: theme.layout.spacing }}
           subType="hint"
           type="display1"
