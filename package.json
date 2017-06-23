@@ -1,6 +1,6 @@
 {
   "name": "react-native-workshop",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "assembleDebug": "npm run _resetPacker && npm run _assembleDebug && npm run _patchDebug && npm run _assembleDebug",

@@ -17,6 +17,7 @@
 apply plugin: "com.android.application"
 
 import com.android.build.OutputFile
+import groovy.json.JsonSlurper
 
 /**
  * The react.gradle file registers a task for each build variant (e.g. bundleDebugJsAndAssets
@@ -133,23 +134,54 @@ android {
       proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
     }
   }
-  // applicationVariants are e.g. debug, release
+}
+
+/**
+ * signing config
+ */
+apply from: "signing.gradle"
+
+/**
+ * versioning config
+ */
+static def getPackageVersion() {
+  def inputFile = new File("../package.json")
+  def packageJson = new JsonSlurper().parseText(inputFile.text)
+  def version = packageJson["version"]
+  def (major, minor, patch) = version.tokenize(".")
+  def properties = new Properties()
+  properties.setProperty("major", major)
+  properties.setProperty("minor", minor)
+  properties.setProperty("patch", patch)
+  return properties
+}
+
+def version = getPackageVersion()
+ext {
+  versioning = [
+      versionMajor: version.getProperty("major"),
+      versionMinor: version.getProperty("minor"),
+      versionPatch: version.getProperty("patch")
+  ]
+}
+apply from: "versioning.gradle"
+android {
   applicationVariants.all { variant ->
     variant.outputs.each { output ->
       // For each separate APK per architecture, set a unique version code as described here:
       // http://tools.android.com/tech-docs/new-build-system/user-guide/apk-splits
-      def versionCodes = ["armeabi-v7a": 1, "x86": 2]
+      def versionCodes = ["armeabi-v7a": 0, "x86": 1]
       def abi = output.getFilter(OutputFile.ABI)
       if (abi != null) {  // null for the universal-debug, universal-release variants
-        output.versionCodeOverride =
-            versionCodes.get(abi) * 1048576 + defaultConfig.versionCode
+        output.versionCodeOverride = versionCodes.get(abi) + defaultConfig.versionCode
       }
     }
   }
 }
 
-apply from: "signing.gradle"
-
+/**
+ * dependencies
+ */
 dependencies {
   compile fileTree(dir: "libs", include: ["*.jar"])
   compile "com.android.support:appcompat-v7:25.3.1"
