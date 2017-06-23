@@ -39,7 +39,7 @@ export default class ActivityItem extends PureComponent {
     return (
       <TouchableWithoutFeedback onPress={this._onPress}>
         <View style={[styles.container, this.props.style]}>
-          <Image
+          <Image style={{ backgroundColor: theme.palette.backgroundDark }}
             height={this.props.width / this.props.ratio}
             source={this.props.data.image}
             width={this.props.width} />
