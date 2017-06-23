@@ -9,18 +9,18 @@ import {
   View
 } from 'react-native-mdcore'
 
-import { Attraction } from '@models'
+import { Activity } from '@models'
 
-import AttractionItem from './AttractionItem'
+import ActivityItem from './ActivityItem'
 
-export default class AttractionHorizontalList extends PureComponent {
+export default class ActivityHorizontalList extends PureComponent {
 
   static contextTypes = {
     theme: PropTypes.any
   }
 
   static propTypes = {
-    data: PropTypes.arrayOf(PropTypes.instanceOf(Attraction)),
+    data: PropTypes.arrayOf(PropTypes.instanceOf(Activity)),
     imageRatio: PropTypes.number,
     maxItemWidth: PropTypes.number,
     seeAllEnabled: PropTypes.bool,
@@ -92,7 +92,7 @@ export default class AttractionHorizontalList extends PureComponent {
     const { theme } = this.context
     return (
       <View key={index} style={{ flexDirection: 'row' }}>
-        <AttractionItem
+        <ActivityItem
           data={item}
           ratio={this.props.imageRatio}
           width={this.state.itemWidth} />

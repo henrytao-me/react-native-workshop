@@ -7,7 +7,7 @@ import {
 } from 'react-native-mdcore'
 
 import * as Actions from '@actions'
-import { AttractionHorizontalList } from '@components'
+import { ActivityHorizontalList } from '@components'
 import * as Selectors from '@selectors'
 import { bindActionCreators, connect } from '@store'
 
@@ -29,16 +29,16 @@ class Recommend extends PureComponent {
     const { theme } = this.context
     return (
       <ScrollView>
-        <AttractionHorizontalList tag="experiences" style={{ marginTop: theme.layout.spacing }}
-          data={this.props.experiencesAsAttraction}
+        <ActivityHorizontalList tag="experiences" style={{ marginTop: theme.layout.spacing }}
+          data={this.props.experiencesAsActivity}
           imageRatio={0.67}
           title="Experiences"
           onSeeAllPress={this.props.onSeeAllPress} />
-        <AttractionHorizontalList tag="homes" style={{ marginTop: theme.layout.spacing }}
-          data={this.props.experiencesAsAttraction}
+        <ActivityHorizontalList tag="homes" style={{ marginTop: theme.layout.spacing }}
+          data={this.props.experiencesAsActivity}
           imageRatio={1.5}
           maxItemWidth={240}
-          title="Homes"
+          title="Listings"
           onSeeAllPress={this.props.onSeeAllPress} />
         <View style={{ height: theme.layout.spacing * 2 }} />
       </ScrollView>
@@ -47,9 +47,9 @@ class Recommend extends PureComponent {
 }
 
 const mapStateToProps = () => {
-  const getExperiencesAsAttraction = Selectors.experiences.filterAndConvertToAttraction()
+  const getExperiencesAsActivity = Selectors.experiences.filterAndConvertToActivity()
   return (state, props) => ({
-    experiencesAsAttraction: getExperiencesAsAttraction(state, props)
+    experiencesAsActivity: getExperiencesAsActivity(state, props)
   })
 }
 

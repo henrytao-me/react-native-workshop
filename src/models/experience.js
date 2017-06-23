@@ -1,8 +1,9 @@
 import { Model } from 'redux-persist-model'
 
-import Attraction from './attraction'
+import Activity from './activity'
 
 const Base = Model.create('Experience', {
+  id: undefined,
   category: '',
   communication: '',
   equipment: '',
@@ -19,8 +20,8 @@ const Base = Model.create('Experience', {
 
 export default class Experience extends Base {
 
-  toAttraction() {
-    return new Attraction({
+  toActivity() {
+    return new Activity({
       highlightTitle: `$${this.price}`,
       title: this.title
     })

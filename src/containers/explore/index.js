@@ -11,13 +11,13 @@ import {
 import { StatusBar } from '@components'
 
 import Experience from './experience'
-import Home from './home'
+import Listing from './listing'
 import Recommend from './recommend'
 
 const TABS = [{
   title: 'For you'
 }, {
-  title: 'Homes'
+  title: 'Listings'
 }, {
   title: 'Experiences'
 }]
@@ -41,7 +41,7 @@ export default class Explore extends PureComponent {
         <ViewPager ref="viewPager" style={{ flex: 1 }}
           onSelectedIndexChange={this._onViewPagerItemSelected}>
           <Recommend onSeeAllPress={this._onSeeAllPress} />
-          <Home />
+          <Listing />
           <Experience />
         </ViewPager>
       </View>

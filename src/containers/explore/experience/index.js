@@ -6,7 +6,7 @@ import {
   View
 } from 'react-native-mdcore'
 
-import { AttractionHorizontalList } from '@components'
+import { ActivityHorizontalList } from '@components'
 
 export default class Experience extends PureComponent {
 
@@ -18,13 +18,13 @@ export default class Experience extends PureComponent {
     const { theme } = this.context
     return (
       <ScrollView>
-        <AttractionHorizontalList style={{ marginTop: theme.layout.spacing }}
+        <ActivityHorizontalList style={{ marginTop: theme.layout.spacing }}
           title="Nature"
           seeAllEnabled={false} />
-        <AttractionHorizontalList style={{ marginTop: theme.layout.spacing }}
+        <ActivityHorizontalList style={{ marginTop: theme.layout.spacing }}
           title="Arts & Design"
           seeAllEnabled={false} />
-        <AttractionHorizontalList style={{ marginTop: theme.layout.spacing }}
+        <ActivityHorizontalList style={{ marginTop: theme.layout.spacing }}
           title="Food & Drink"
           seeAllEnabled={false} />
         <View style={{ height: theme.layout.spacing * 2 }} />

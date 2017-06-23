@@ -6,10 +6,10 @@ import {
   View
 } from 'react-native-mdcore'
 
-import { AttractionItem } from '@components'
+import { ActivityItem } from '@components'
 import { bindActionCreators, connect } from '@store'
 
-class Home extends PureComponent {
+class Listing extends PureComponent {
 
   static contextTypes = {
     theme: PropTypes.any
@@ -19,10 +19,10 @@ class Home extends PureComponent {
     const { theme } = this.context
     return (
       <ScrollView style={{ paddingLeft: theme.layout.spacing, paddingRight: theme.layout.spacing }}>
-        <AttractionItem style={{ marginTop: theme.layout.spacing }} />
-        <AttractionItem style={{ marginTop: theme.layout.spacing }} />
-        <AttractionItem style={{ marginTop: theme.layout.spacing }} />
-        <AttractionItem style={{ marginTop: theme.layout.spacing }} />
+        <ActivityItem style={{ marginTop: theme.layout.spacing }} />
+        <ActivityItem style={{ marginTop: theme.layout.spacing }} />
+        <ActivityItem style={{ marginTop: theme.layout.spacing }} />
+        <ActivityItem style={{ marginTop: theme.layout.spacing }} />
         <View style={{ height: theme.layout.spacing * 2 }} />
       </ScrollView>
     )
@@ -33,4 +33,4 @@ const mapStateToProps = (state) => {
   return {}
 }
 
-export default connect(mapStateToProps, null)(Home)
+export default connect(mapStateToProps, null)(Listing)

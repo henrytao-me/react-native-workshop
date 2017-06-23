@@ -6,9 +6,9 @@ const filter = (max = 5) => createSelector(
   (ids, data) => ids.slice(0, max).map(id => data[id])
 )
 
-const filterAndConvertToAttraction = (max = 5) => createSelector(
+const filterAndConvertToActivity = (max = 5) => createSelector(
   filter(max),
-  experiences => experiences.map(experience => experience.toAttraction())
+  experiences => experiences.map(experience => experience.toActivity())
 )
 
-export default { filter, filterAndConvertToAttraction }
+export default { filter, filterAndConvertToActivity }

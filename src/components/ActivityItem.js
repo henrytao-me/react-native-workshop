@@ -8,16 +8,16 @@ import {
   View
 } from 'react-native-mdcore'
 
-import { Attraction } from '@models'
+import { Activity } from '@models'
 
-export default class AttractionItem extends PureComponent {
+export default class ActivityItem extends PureComponent {
 
   static contextTypes = {
     theme: PropTypes.any
   }
 
   static propTypes = {
-    data: PropTypes.instanceOf(Attraction),
+    data: PropTypes.instanceOf(Activity),
     ratio: PropTypes.number,
     width: PropTypes.number,
   }
