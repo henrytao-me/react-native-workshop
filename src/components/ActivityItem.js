@@ -36,9 +36,9 @@ export default class ActivityItem extends PureComponent {
       <View style={[styles.container, this.props.style]}>
         <View style={{ height: this.props.width / this.props.ratio, backgroundColor: '#ccc' }}></View>
         <View style={styles.header}>
-          <Text numberOfLines={2}>
+          <Text numberOfLines={2} type="subhead1">
             {this.props.data.highlightTitle && <Text style={styles.headerHighLightTitle} type="subhead1">{this.props.data.highlightTitle}</Text>}
-            {this.props.data.highlightTitle && <Text value="  " />}
+            {this.props.data.highlightTitle && <Text type="subhead1" value="  " />}
             {this.props.data.title && <Text type="subhead1">{this.props.data.title}</Text>}
           </Text>
         </View>
@@ -79,8 +79,8 @@ const Styles = StyleSheet.create((theme, { width }) => {
   const header = {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: theme.layout.spacingSm,
-    marginBottom: theme.layout.spacingSm
+    paddingTop: theme.layout.spacingSm,
+    paddingBottom: theme.layout.spacingSm
   }
   const headerHighLightTitle = {
     fontWeight: 'bold'

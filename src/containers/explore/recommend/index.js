@@ -35,7 +35,7 @@ class Recommend extends PureComponent {
           title="Experiences"
           onSeeAllPress={this.props.onSeeAllPress} />
         <ActivityHorizontalList tag="homes" style={{ marginTop: theme.layout.spacing }}
-          data={this.props.experiencesAsActivity}
+          data={this.props.listingsAsActivity}
           imageRatio={1.5}
           maxItemWidth={240}
           title="Listings"
@@ -47,9 +47,11 @@ class Recommend extends PureComponent {
 }
 
 const mapStateToProps = () => {
-  const getExperiencesAsActivity = Selectors.experiences.filterAndConvertToActivity()
+  const getExperiencesAsActivity = Selectors.experience.filterAndConvertToActivity()
+  const getListingsAsActivity = Selectors.listing.filterAndConvertToActivity()
   return (state, props) => ({
-    experiencesAsActivity: getExperiencesAsActivity(state, props)
+    experiencesAsActivity: getExperiencesAsActivity(state, props),
+    listingsAsActivity: getListingsAsActivity(state, props)
   })
 }
 
