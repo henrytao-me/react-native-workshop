@@ -24,5 +24,4 @@ This project is for demo purpose only. It provides:
 
 ## How does the demo look like? 
 
-Inline-style: 
 ![RNAirbnb Screenshot](docs/rnairbnb.jpg)
