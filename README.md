@@ -84,6 +84,17 @@ This project is for demo purpose only. It provides:
 - http://frontendinsights.com/stateless-functional-components/
 - https://expo.io/
 
+## Recommended Plugins for Visual Studio Code
+
+- Auto Close Tag - Jun Han
+- Color Highlight - Sergii Naumov
+- es-beautifier - dai-shi
+- ESLint - Dirk Baeumer
+- Prettify JSON - Mohsen
+- React Native Tools - Visual Studio Mobile Tools 
+- React Redux ES6 - Timothy McLane
+- React-Native/React/Redux snippets for es6/es7 - EQuimper
+
 
 ## License
 
