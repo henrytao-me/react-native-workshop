@@ -8,6 +8,7 @@
     "codePushSilent": "code-push release RNAirbnb patch '<0.1.1' -d Production --mandatory --des '{\"mandatoryInstallMode\": 1}'",
     "eslint": "node ./node_modules/eslint/bin/eslint.js src/** libs/*/src/**",
     "patch": "rm -rf patch && mkdir -p patch && react-native bundle --platform android --dev false --entry-file index.android.js --bundle-output patch/index.android.bundle --assets-dest patch/",
+    "reset": "watchman watch-del-all && rm -rf ./node_modules && rm -rf ./package-lock.json && rm -rf $TMPDIR/react-* && npm install",
     "start": "node node_modules/react-native/local-cli/cli.js start --reset-cache",
     "stop": "cd ./android && ./gradlew --stop && cd ../",
     "test": "jest",
@@ -20,6 +21,7 @@
     "react": "16.0.0-alpha.12",
     "react-native": "0.45.1",
     "react-native-code-push": "2.1.0-beta",
+    "react-native-mdcore": "0.1.7",
     "react-native-vector-icons": "4.2.0",
     "react-navigation": "1.0.0-beta.11",
     "react-redux": "5.0.5",
@@ -28,6 +30,7 @@
     "redux-logger": "3.0.6",
     "redux-persist": "4.8.1",
     "redux-persist-migrate": "4.1.0",
+    "redux-persist-model": "0.1.1",
     "reselect": "3.0.1"
   },
   "devDependencies": {
