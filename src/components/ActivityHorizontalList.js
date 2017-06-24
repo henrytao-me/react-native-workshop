@@ -48,7 +48,7 @@ export default class ActivityHorizontalList extends PureComponent {
     const styles = Styles.get(theme)
     return (
       <View style={[styles.container, this.props.style]} onLayout={this._onLayoutChange}>
-        <View style={styles.header}>
+        {this.state.itemWidth > 0 && <View style={styles.header}>
           <View style={styles.headerTitle}>
             <Text
               type="title"
@@ -64,14 +64,14 @@ export default class ActivityHorizontalList extends PureComponent {
               </View>
             </TouchableOpacity>
           )}
-        </View>
-        <ScrollView
+        </View>}
+        {this.state.itemWidth > 0 && this.props.data && <ScrollView
           horizontal={true}
           removeClippedSubviews={true}
           showsHorizontalScrollIndicator={false}>
           <View style={{ width: theme.layout.spacing }} />
-          {this.props.data && this.props.data.map(this._renderItem)}
-        </ScrollView>
+          {this.props.data.map(this._renderItem)}
+        </ScrollView>}
       </View>
     )
   }
