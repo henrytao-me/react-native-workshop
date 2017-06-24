@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "assembleDebug": "npm run _unlink && npm run _resetPacker && npm run _assembleDebug && npm run _patchDebug && npm run _assembleDebug",
-    "assembleRelease": "npm run _unlink && npm run _resetPacker && cd ./android && ./gradlew assembleRelease && cd ../",
+    "assembleDebug": "npm run _unlink > /dev/null 2>&1; npm run _resetPacker && npm run _assembleDebug && npm run _patchDebug && npm run _assembleDebug",
+    "assembleRelease": "npm run _unlink > /dev/null 2>&1; npm run _resetPacker && cd ./android && ./gradlew assembleRelease && cd ../",
     "codePushSilent": "code-push release RNAirbnb patch '<0.1.1' -d Production --mandatory --des '{\"mandatoryInstallMode\": 1}'",
     "eslint": "node ./node_modules/eslint/bin/eslint.js src/** libs/*/src/**",
     "patch": "rm -rf patch && mkdir -p patch && react-native bundle --platform android --dev false --entry-file index.android.js --bundle-output patch/index.android.bundle --assets-dest patch/",
