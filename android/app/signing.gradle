@@ -1,0 +1,61 @@
+/*
+ * Copyright 2017 "Henry Tao <hi@henrytao.me>"
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file("local.properties").newDataInputStream())
+
+android {
+  signingConfigs {
+    debug
+    release
+  }
+}
+
+if (System.getenv("ANDROID_DEBUG_STORE_FILE")) {
+  android.signingConfigs.debug.storeFile = file(System.getenv("ANDROID_DEBUG_STORE_FILE"))
+  android.signingConfigs.debug.storePassword = System.getenv("ANDROID_DEBUG_STORE_PASSWORD")
+  android.signingConfigs.debug.keyAlias = System.getenv("ANDROID_DEBUG_KEY_ALIAS")
+  android.signingConfigs.debug.keyPassword = System.getenv("ANDROID_DEBUG_KEY_PASSWORD")
+} else if (project.hasProperty("ANDROID_DEBUG_STORE_FILE")) {
+  android.signingConfigs.debug.storeFile = file(ANDROID_DEBUG_STORE_FILE)
+  android.signingConfigs.debug.storePassword = ANDROID_DEBUG_STORE_PASSWORD
+  android.signingConfigs.debug.keyAlias = ANDROID_DEBUG_KEY_ALIAS
+  android.signingConfigs.debug.keyPassword = ANDROID_DEBUG_KEY_PASSWORD
+} else if (properties.containsKey("ANDROID_DEBUG_STORE_FILE")) {
+  android.signingConfigs.debug.storeFile = file(properties.getProperty("ANDROID_DEBUG_STORE_FILE"))
+  android.signingConfigs.debug.storePassword = properties.getProperty("ANDROID_DEBUG_STORE_PASSWORD")
+  android.signingConfigs.debug.keyAlias = properties.getProperty("ANDROID_DEBUG_KEY_ALIAS")
+  android.signingConfigs.debug.keyPassword = properties.getProperty("ANDROID_DEBUG_KEY_PASSWORD")
+}
+android.buildTypes.debug.signingConfig = android.signingConfigs.debug
+
+if (System.getenv("ANDROID_STORE_FILE")) {
+  android.signingConfigs.release.storeFile = file(System.getenv("ANDROID_STORE_FILE"))
+  android.signingConfigs.release.storePassword = System.getenv("ANDROID_STORE_PASSWORD")
+  android.signingConfigs.release.keyAlias = System.getenv("ANDROID_KEY_ALIAS")
+  android.signingConfigs.release.keyPassword = System.getenv("ANDROID_KEY_PASSWORD")
+} else if (project.hasProperty("ANDROID_STORE_FILE")) {
+  android.signingConfigs.release.storeFile = file(ANDROID_STORE_FILE)
+  android.signingConfigs.release.storePassword = ANDROID_STORE_PASSWORD
+  android.signingConfigs.release.keyAlias = ANDROID_KEY_ALIAS
+  android.signingConfigs.release.keyPassword = ANDROID_KEY_PASSWORD
+} else if (properties.containsKey("ANDROID_STORE_FILE")) {
+  android.signingConfigs.release.storeFile = file(properties.getProperty("ANDROID_STORE_FILE"))
+  android.signingConfigs.release.storePassword = properties.getProperty("ANDROID_STORE_PASSWORD")
+  android.signingConfigs.release.keyAlias = properties.getProperty("ANDROID_KEY_ALIAS")
+  android.signingConfigs.release.keyPassword = properties.getProperty("ANDROID_KEY_PASSWORD")
+}
+android.buildTypes.release.signingConfig = android.signingConfigs.release
