@@ -7,6 +7,7 @@ This project is for demo purpose only. It provides:
 - OTA update with codepush 
 - Persist model to store with [redux-persist-model](https://github.com/henrytao-me/redux-persist-model)
 
+
 ## How to run this project? 
 
 1. Setup `react-native` project with Native Code here [[Getting Started]](http://facebook.github.io/react-native/docs/getting-started.html).
@@ -17,21 +18,29 @@ This project is for demo purpose only. It provides:
 6. Open terminla 2, run `react-native run-android` (for Android) or `react-native run-ios` (for iOS).
 7. Enjoy.
 
+
 ## Where are demo apps? 
 
 1. For Android, download here [RNAirbnb.apk](docs/rnairbnb.apk).
 2. For iOS, build your own (Sorry).
 
+
 ## How does the demo look like? 
 
 ![RNAirbnb Screenshot](docs/rnairbnb.jpg)
+
 
 ## Usages
 
 ### About app version
 
-- For Android, `version_name` and `version_code` are updated dynamically based on `version` in `package.json`. There is a gradle task in [./android/app/build.gradle](android/app/build.gradle) and [./android/app/versioning.gradle](android/app/versioning.gradle) that are highly recommmended to take a look. 
-- For iOS, it is currently set as static values in project properties. 
+- For Android, `version_name` and `version_code` are updated dynamically based on `version` in `package.json`. There are gradle tasks in [./android/app/build.gradle](android/app/build.gradle) and [./android/app/versioning.gradle](android/app/versioning.gradle) that are highly recommmended to take a look. 
+- For iOS, they are currently set as static values in project properties. 
+
+### About app data
+
+- App data is serving on [https://jsonstub.com](https://jsonstub.com)
+- Change JSONSTUB credentials as your preference at [./src/modules/ApiModule/HttpService.js](src/modules/ApiModule/HttpService.js)
 
 ### Create release builds 
 
@@ -45,9 +54,25 @@ This project is for demo purpose only. It provides:
 - CodePush works with following app version format `[major].[minor].[patch]`. Major, minor and patch must be numbers. Make sure you know what app version you are currently running before sending CodePush.
 - Make some changes in the code. Ex: change some UIs. 
 - Run `npm run patch`. It will create a patch in directory `./patch`.
-- Run `npm run codePushSilent`. It will deploy your patch to CodePush server and push to client properly. Make sure Code-Push version is correct in `package.json`. The script looks like this `code-push release RNAirbnb patch '<0.1.1' -d Production --mandatory --des '{\"mandatoryInstallMode\": 1}'`.
+- Run `npm run codePushSilent`. It will deploy your patch to CodePush server and push to client properly. Make sure CodePush version is correct in `package.json`. The script looks like this `code-push release RNAirbnb patch '<0.1.1' -d Production --mandatory --des '{\"mandatoryInstallMode\": 1}'`.
 - Kill the app and re-open it to see updates. 
 - There are many strategies to use CodePush. In this app, there is a really useful react native component that allow to handle many strategies. As you can see on `codePushSilent` npm script, it uses `description` parameter to inject configurations that are used later in [Downloader React Native Component](src/containers/downloader/index.js).
+
+## References
+
+- http://facebook.github.io/react-native/docs/getting-started.html
+- http://facebook.github.io/react-native/docs/running-on-device.html
+- https://github.com/henrytao-me/react-native-mdcore
+- https://github.com/henrytao-me/redux-persist-model
+- http://redux.js.org/docs/recipes/
+- https://reactnavigation.org/docs/intro/
+- https://facebook.github.io/immutable-js/
+- https://material.io/guidelines/material-design/introduction.html
+- https://github.com/oblador/react-native-vector-icons
+- https://github.com/rt2zz/redux-persist
+- https://github.com/wildlifela/redux-persist-migrate
+- https://jsonstub.com
+
 
 ## License
 
