@@ -60,7 +60,7 @@ This project is for demo purpose only. It provides:
 
 ## Q&A
 
-- Stateless function in Redux? => Works [./src/containers/explore/recommand/index.js].(src/containers/explore/recommand/index.js) and [./src/components/ActivityItemStateless.js](src/components/ActivityItemStateless.js).
+- Stateless function in Redux? => Works [./src/containers/explore/recommand/index.js](src/containers/explore/recommand/index.js) and [./src/components/ActivityItemStateless.js](src/components/ActivityItemStateless.js).
 - Performance in React Native? => Depending on how components are rendered and how their states are managed. Rule: split component as small as possible. 
 - Integrate React Native with Three.js? => Should create native implementations and bridges for React Native.
 - React Native VS NativeScript? => Can't compare.
