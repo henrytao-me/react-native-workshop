@@ -25,3 +25,42 @@ This project is for demo purpose only. It provides:
 ## How does the demo look like? 
 
 ![RNAirbnb Screenshot](docs/rnairbnb.jpg)
+
+## Usages
+
+### About app version
+
+- For Android, `version_name` and `version_code` are updated dynamically based on `version` in `package.json`. There is a gradle task in [./android/app/build.gradle](android/app/build.gradle) and [./android/app/versioning.gradle](android/app/versioning.gradle) that are highly recommmended to take a look. 
+- For iOS, it is currently set as static values in project properties. 
+
+### Create release builds 
+
+- For Android, run `npm run assembleRelease` and get the apk at `./android/app/build/outputs/apk/app-release.apk`
+- For iOS, check out react-native document [[Running On Device]](http://facebook.github.io/react-native/docs/running-on-device.html)
+
+### Running your own CodePush
+
+- Current CodePush key is `7sD-01j0oMP9f_9I4JfOszN1CqYe6619df66-73b7-426b-96e9-0474ec5306c8`.
+- Find and change CodePush key as your preference. 
+- CodePush works with following app version format `[major].[minor].[patch]`. Major, minor and patch must be numbers. Make sure you know what app version you are currently running before sending CodePush.
+- Make some changes in the code. Ex: change some UIs. 
+- Run `npm run patch`. It will create a patch in directory `./patch`.
+- Run `npm run codePushSilent`. It will deploy your patch to CodePush server and push to client properly. Make sure Code-Push version is correct in `package.json`. The script looks like this `code-push release RNAirbnb patch '<0.1.1' -d Production --mandatory --des '{\"mandatoryInstallMode\": 1}'`.
+- Kill the app and re-open it to see updates. 
+- There are many strategies to use CodePush. In this app, there is a really useful react native component that allow to handle many strategies. As you can see on `codePushSilent` npm script, it uses `description` parameter to inject configurations that are used later in [Downloader React Native Component](src/containers/downloader/index.js).
+
+## License
+
+    Copyright 2017 "Henry Tao <hi@henrytao.me>"
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
