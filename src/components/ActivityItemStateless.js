@@ -11,13 +11,17 @@ import {
 
 import { Activity } from '@models'
 
+const onPress = (props) => () => {
+  props.onPress(props)
+}
+
 const ActivityItem = (props, { theme }) => {
   if (props.width === 0 || !props.data) {
     return null
   }
   const styles = Styles.get(theme, props)
   return (
-    <TouchableWithoutFeedback onPress={this._onPress}>
+    <TouchableWithoutFeedback onPress={onPress(props)}>
       <View style={[styles.container, props.style]}>
         <Image style={{ backgroundColor: theme.palette.backgroundDark }}
           height={props.width / props.ratio}

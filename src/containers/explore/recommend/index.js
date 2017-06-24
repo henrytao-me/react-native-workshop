@@ -1,7 +1,6 @@
 import React from 'react'
 import {
   PropTypes,
-  PureComponent,
   ScrollView,
   View
 } from 'react-native-mdcore'
@@ -11,49 +10,45 @@ import { ActivityHorizontalList } from '@components'
 import * as Selectors from '@selectors'
 import { bindActionCreators, connect } from '@store'
 
-class Recommend extends PureComponent {
+const onExperienceItemPress = (props) => ({ data }) => {
+  props.navigatorActions.toExperienceDetail(data.id)
+}
 
-  static contextTypes = {
-    theme: PropTypes.any
-  }
+const onListingItemPress = (props) => ({ data }) => {
+  props.navigatorActions.toListingDetail(data.id)
+}
 
-  static propTypes = {
-    onSeeAllPress: PropTypes.func
-  }
+const Recommend = (props, { theme }) => {
+  return (
+    <ScrollView>
+      <ActivityHorizontalList tag="experiences" style={{ marginTop: theme.layout.spacing }}
+        data={props.experiencesAsActivity}
+        imageRatio={0.67}
+        title="Experiences"
+        onItemPress={onExperienceItemPress(props)}
+        onSeeAllPress={props.onSeeAllPress} />
+      <ActivityHorizontalList tag="homes" style={{ marginTop: theme.layout.spacing }}
+        data={props.listingsAsActivity}
+        imageRatio={1.5}
+        maxItemWidth={240}
+        title="Listings"
+        onItemPress={onListingItemPress(props)}
+        onSeeAllPress={props.onSeeAllPress} />
+      <View style={{ height: theme.layout.spacing * 2 }} />
+    </ScrollView>
+  )
+}
 
-  static defaultProps = {
-    onSeeAllPress: () => { }
-  }
+Recommend.contextTypes = {
+  theme: PropTypes.any
+}
 
-  render() {
-    const { theme } = this.context
-    return (
-      <ScrollView>
-        <ActivityHorizontalList tag="experiences" style={{ marginTop: theme.layout.spacing }}
-          data={this.props.experiencesAsActivity}
-          imageRatio={0.67}
-          title="Experiences"
-          onItemPress={this._onExperienceItemPress}
-          onSeeAllPress={this.props.onSeeAllPress} />
-        <ActivityHorizontalList tag="homes" style={{ marginTop: theme.layout.spacing }}
-          data={this.props.listingsAsActivity}
-          imageRatio={1.5}
-          maxItemWidth={240}
-          title="Listings"
-          onItemPress={this._onListingItemPress}
-          onSeeAllPress={this.props.onSeeAllPress} />
-        <View style={{ height: theme.layout.spacing * 2 }} />
-      </ScrollView>
-    )
-  }
+Recommend.propTypes = {
+  onSeeAllPress: PropTypes.func
+}
 
-  _onExperienceItemPress = ({ data }) => {
-    this.props.navigatorActions.toExperienceDetail(data.id)
-  }
-
-  _onListingItemPress = ({ data }) => {
-    this.props.navigatorActions.toListingDetail(data.id)
-  }
+Recommend.defaultProps = {
+  onSeeAllPress: () => { }
 }
 
 const mapStateToProps = () => {
