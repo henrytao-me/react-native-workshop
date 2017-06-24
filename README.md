@@ -58,10 +58,16 @@ This project is for demo purpose only. It provides:
 - Kill the app and re-open it to see updates. 
 - There are many strategies to use CodePush. In this app, there is a really useful react native component that allow to handle many strategies. As you can see on `codePushSilent` npm script, it uses `description` parameter to inject configurations that are used later in [Downloader React Native Component](src/containers/downloader/index.js).
 
+## Q&A
+
+
+
 ## References
 
 - http://facebook.github.io/react-native/docs/getting-started.html
 - http://facebook.github.io/react-native/docs/running-on-device.html
+- https://github.com/facebook/prop-types
+- https://github.com/vhpoet/react-native-styling-cheat-sheet
 - https://github.com/henrytao-me/react-native-mdcore
 - https://github.com/henrytao-me/redux-persist-model
 - http://redux.js.org/docs/recipes/
@@ -72,6 +78,8 @@ This project is for demo purpose only. It provides:
 - https://github.com/rt2zz/redux-persist
 - https://github.com/wildlifela/redux-persist-migrate
 - https://jsonstub.com
+- http://frontendinsights.com/stateless-functional-components/
+- https://expo.io/
 
 
 ## License
