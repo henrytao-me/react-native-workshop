@@ -1,29 +1,17 @@
-import React from 'react'
+import React, { PureComponent } from 'react'
 import {
   AppRegistry,
-  PureComponent,
-  ThemeProvider
-} from 'react-native-mdcore'
-import { PersistModelProvider } from 'redux-persist-model'
-
-import { Downloader } from '@containers'
-import { Screen as ScreenNavigator } from '@navigators'
-import Store from '@store'
-import Theme from '@themes'
+  Text,
+  View
+} from 'react-native'
 
 class Main extends PureComponent {
 
   render() {
     return (
-      <Store>
-        <ThemeProvider theme={Theme}>
-          <PersistModelProvider>
-            <Downloader>
-              <ScreenNavigator />
-            </Downloader>
-          </PersistModelProvider>
-        </ThemeProvider>
-      </Store>
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Text>Hello World!</Text>
+      </View>
     )
   }
 }
