@@ -17,6 +17,11 @@ This project is for demo purpose only. It provides:
 6. Open terminla 2, run `react-native run-android` (for Android) or `react-native run-ios` (for iOS).
 7. Enjoy.
 
+## Where are demo apps? 
+
+1. For Android, download here [RNAirbnb.apk](docs/rnairbnb.apk).
+2. For iOS, build your own (Sorry).
+
 ## How does the demo look like? 
 
 Inline-style: 
