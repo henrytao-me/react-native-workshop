@@ -1,0 +1,6 @@
+- Create UI components
+- Create models and mock data
+- Performance notes when using connect in redux
+- Create navigator
+- Work with real data
+- Add CodePush
