@@ -1,13 +1,13 @@
-import { Model } from 'redux-persist-model'
+import { Record } from 'immutable'
 
 import Activity from './activity'
 
-const Base = Model.create('Listing', {
+const Base = Record({
   id: undefined,
   image: undefined,
   price: 0,
   title: ''
-})
+}, 'Listing')
 
 export default class Listing extends Base {
 

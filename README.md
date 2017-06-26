@@ -5,7 +5,6 @@ This project is for demo purpose only. It provides:
 - Theme system with [react-native-mdcore](https://github.com/henrytao-me/react-native-mdcore)
 - Useful npm scripts
 - OTA update with codepush 
-- Persist model to store with [redux-persist-model](https://github.com/henrytao-me/redux-persist-model)
 
 
 ## How to run this project? 
@@ -72,7 +71,6 @@ This project is for demo purpose only. It provides:
 - https://github.com/facebook/prop-types
 - https://github.com/vhpoet/react-native-styling-cheat-sheet
 - https://github.com/henrytao-me/react-native-mdcore
-- https://github.com/henrytao-me/redux-persist-model
 - http://redux.js.org/docs/recipes/
 - https://reactnavigation.org/docs/intro/
 - https://facebook.github.io/immutable-js/

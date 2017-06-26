@@ -4,7 +4,6 @@ import {
   PureComponent,
   ThemeProvider
 } from 'react-native-mdcore'
-import { PersistModelProvider } from 'redux-persist-model'
 
 import { Downloader } from '@containers'
 import { Screen as ScreenNavigator } from '@navigators'
@@ -17,11 +16,9 @@ class Main extends PureComponent {
     return (
       <Store>
         <ThemeProvider theme={Theme}>
-          <PersistModelProvider>
-            <Downloader>
-              <ScreenNavigator />
-            </Downloader>
-          </PersistModelProvider>
+          <Downloader>
+            <ScreenNavigator />
+          </Downloader>
         </ThemeProvider>
       </Store>
     )
